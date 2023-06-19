@@ -13,4 +13,4 @@ private:
 tipoCargo cargo;
 
 };
-#endif /* EMPLEADO_H */// 
+#endif 

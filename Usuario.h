@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-class Usuario{
+class Usuario {
 public:
 Usuario();
 virtual ~Usuario();
@@ -15,4 +15,4 @@ string password;
 };
 
 
-#endif /* USUARIO_H */
+#endif

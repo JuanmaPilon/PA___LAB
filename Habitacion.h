@@ -13,4 +13,4 @@ private:
 
 
 
-#endif /*HABITACION_H*/
+#endif
