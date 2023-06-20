@@ -8,7 +8,7 @@ public:
     Huesped(const Huesped& obj);
     virtual ~Huesped();
 private:
-
+bool esFinger;
 };
 
-#endif /*HUESPED_H*/
+#endif 

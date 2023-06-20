@@ -1,5 +1,6 @@
-#define ESTADIA_H
 #ifndef ESTADIA_H
+#define ESTADIA_H
+#include "Calificacion.h"
 
 class Estadia {
 public:
@@ -14,9 +15,10 @@ public:
     void buscoCalificacion();
 private:
     int codigo;
-    DTFecha checkIn;
-    DTFecha checkOut;
+    //DTFecha checkIn;
+    //DTFecha checkOut;
     int promo;
+    Calificacion* calificacion;
 
 };
 

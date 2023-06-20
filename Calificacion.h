@@ -1,17 +1,22 @@
-#define CALIFICACION_H
 #ifndef CALIFICACION_H
+#define CALIFICACION_H
+#include <map>
+#include <string>
+using namespace std;
+#include "Respuesta.h"
 
 class Calificacion{
 public:
-    Califcacion();
+    Calificacion();
     virtual ~Calificacion();
     int getCaficacion();
     void getCalificaciones();
-    void agregoRepsuesta();
+    void agregoRepsuesta(string respuesta);
 private:
     int numCalificacion;
     string comentario;
-    DTFechaCali fechaCali;
-};
+    //DTFechaCali fechaCali;
 
+    map<string, Respuesta*> colRespuestas;
+};
 #endif

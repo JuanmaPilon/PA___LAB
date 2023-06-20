@@ -1,6 +1,7 @@
 #ifndef FABRICA_H
 #define FABRICA_H
-class Fabrica: public IForo {
+#include "ISistema.h"
+class Fabrica: public ISistema {
     public:
         static Fabrica* getInstance();
         ~Fabrica(); 

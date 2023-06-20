@@ -1,5 +1,5 @@
-#define HABITACION_H
 #ifndef HABITACION_H
+#define HABITACION_H
 
 class Habitacion {
 public:
@@ -9,7 +9,7 @@ private:
     int numero;
     float precioNoche;
     int capacidad;
-}
+};
 
 
 
