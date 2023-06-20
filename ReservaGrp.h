@@ -6,6 +6,7 @@ private:
 
 public:
     ReservaGrupal();
+    map<string, Huesped*> colHuespedes;
 };
 
 
