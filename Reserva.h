@@ -7,7 +7,10 @@
 #include <string>
 #include "Huesped.h"
 #include "Habitacion.h"
-class Reserva{
+#include "../ICollection/interfaces/ICollectible.h"
+#include "../ICollection/interfaces/IDictionary.h"
+
+class Reserva : public ICollectible{
 public:
     Reserva();
     Reserva(const Reserva& obj);
@@ -20,7 +23,7 @@ DTFecha* checkIn;
 DTFecha* checkOut;
 EstadoReserva estado;
 float costoReserva;
-map<int, Estadia*> colEstadias;
+IDictionary* colEstadias;
 Huesped* huesped;
 Habitacion* habitacion;
 };

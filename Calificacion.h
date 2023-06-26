@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 #include "Respuesta.h"
+#include "../ICollection/interfaces/ICollectible.h"
+#include "../ICollection/interfaces/ICollection.h"
 
 class Calificacion{
 public:
@@ -17,6 +19,7 @@ private:
     string comentario;
     //DTFechaCali fechaCali;
 
-    map<string, Respuesta*> colRespuestas;
+    ICollection* colCalificaciones;
+    
 };
 #endif

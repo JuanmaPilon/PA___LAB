@@ -5,6 +5,9 @@
 #include <map>
 #include <string>
 #include "Respuesta.h"
+#include "../ICollection/interfaces/IDictionary.h"
+
+
 class Empleado : public Usuario{
 public:
     Empleado();
@@ -13,6 +16,6 @@ public:
 private:
 
 tipoCargo cargo;
-map<string, Respuesta*> colRespuestas;
+IDictionary* colRespuestas;
 };
 #endif 

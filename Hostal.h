@@ -5,11 +5,14 @@
 #include <string>
 #include "Empleado.h"
 #include "Habitacion.h"
+#include "../ICollection/interfaces/IDictionary.h"
+#include "../ICollection/interfaces/ICollectible.h"
+#include "../ICollection/interfaces/ICollection.h"
 using namespace std;
 
 
 
-class Hostal {
+class Hostal : public ICollectible {
 public:
     Hostal();
     virtual ~Hostal();
@@ -17,9 +20,9 @@ private:
     string nombre;
     string direccion;
     int telefono;
-    map <int , Reserva*> colReservas;
-    map <int , Habitacion*> colHabitaciones;
-    map <string, Empleado*> colEmpleados;
+    ICollection* colReservas;
+    ICollection* colHabitaciones;
+    IDictionary* colEmpleados;
 
 };
 

@@ -3,6 +3,8 @@
 #include "Reserva.h"
 #include <map>
 #include <string>
+#include "../ICollection/interfaces/ICollectible.h"
+
 class Habitacion {
 public:
     Habitacion();
@@ -11,7 +13,7 @@ private:
     int numero;
     float precioNoche;
     int capacidad;
-    map<int, Reserva*> colReservas;
+    ICollectible* colReservas;
 };
 
 
