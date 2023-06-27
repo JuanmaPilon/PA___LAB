@@ -4,18 +4,24 @@
 #include "TipoCargo.h"
 #include <map>
 #include <string>
-#include "Respuesta.h"
 #include "../ICollection/interfaces/IDictionary.h"
+#include "Hostal.h"
 
 
 class Empleado : public Usuario{
 public:
     Empleado();
-    Empleado(const Empleado& obj);
-    virtual ~Empleado();
+    Empleado(string email, string nombre, string password, tipoCargo cargo,Hostal* hostalTrabaja);
+    ~Empleado();
+    string getCargo();
+    Hostal* getHostalTrabaja();
+    void getNombre();
+    void setHostalTrabaja(Hostal *hos);
+    void setCargo(tipoCargo cargo);      
 private:
-
-tipoCargo cargo;
-IDictionary* colRespuestas;
+    Hostal* hostalTrabaja;
+    tipoCargo cargo;
+    //IDictionary* colRespuestas;
+  
 };
 #endif 

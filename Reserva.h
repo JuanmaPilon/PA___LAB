@@ -10,20 +10,24 @@
 #include "../ICollection/interfaces/ICollectible.h"
 #include "../ICollection/interfaces/IDictionary.h"
 
-class Reserva : public ICollectible{
+class Reserva {
 public:
     Reserva();
-    Reserva(const Reserva& obj);
+    Reserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Habitacion* hab);
     virtual ~Reserva();
+    DTFecha* getCheckIn();
+	DTFecha* getCheckOut();
+    void setHabitacion(Habitacion*);
     void getReserva();
     void cambioDeEstado();
-private:
+    virtual Huesped* getHuesped(){return NULL;};
+protected:
 int codigo;
 DTFecha* checkIn; 
 DTFecha* checkOut;
 EstadoReserva estado;
 float costoReserva;
-IDictionary* colEstadias;
+//IDictionary* colEstadias;
 Huesped* huesped;
 Habitacion* habitacion;
 };

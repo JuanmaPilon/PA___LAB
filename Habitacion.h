@@ -3,12 +3,13 @@
 #include "Reserva.h"
 #include <map>
 #include <string>
-#include "../ICollection/interfaces/ICollectible.h"
+#include "./ICollection/interfaces/ICollectible.h"
 
 class Habitacion {
 public:
     Habitacion();
     virtual ~Habitacion();
+    void setHabitacion();
 private:
     int numero;
     float precioNoche;

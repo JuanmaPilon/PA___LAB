@@ -13,7 +13,11 @@ using namespace std;
 class Huesped : public Usuario {
 public:
     Huesped();
-    Huesped(const Huesped& obj);
+    Huesped(string email, string nombre, string password, bool esFinger);
+    virtual ~Huesped();
+    void getHuesped();
+    bool getEsFinger();
+    void setEsFinger(bool esFinger);
     virtual ~Huesped();
 private:
 bool esFinger;

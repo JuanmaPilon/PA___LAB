@@ -4,26 +4,34 @@
 #include <map>
 #include <string>
 #include "Empleado.h"
-#include "Habitacion.h"
-#include "../ICollection/interfaces/IDictionary.h"
-#include "../ICollection/interfaces/ICollectible.h"
-#include "../ICollection/interfaces/ICollection.h"
 using namespace std;
 
 
 
-class Hostal : public ICollectible {
+class Hostal {
 public:
     Hostal();
-    virtual ~Hostal();
+    Hostal(string nombre, string direccion, string telefono);
+    map<int, Habitacion *> getColeccionHabitaciones();
+    map<string, Estadia *> getColeccionEstadia();
+    string getNombre();
+    string getDireccion();
+    string getTelefono();
+    Habitacion* getHabitacion(int num);
+    Estadia* getEstadia(string cod);
+    void setNombre(string nombre);
+    void setDireccion(string direccion);
+    void setTelefono(string telefono);
+    void agregarHabitacion(int num, Habitacion* hab);
+    void agregarEstadia(string cod, Estadia* e);
+    void eliminarEstadia(string cod);
+    ~Hostal();
 private:
     string nombre;
     string direccion;
-    int telefono;
-    ICollection* colReservas;
-    ICollection* colHabitaciones;
-    IDictionary* colEmpleados;
-
+    string telefono;
+    map<int, Habitacion *> coleccionHabitaciones;
+    map<string, Estadia *> coleccionEstadia;
 };
 
 

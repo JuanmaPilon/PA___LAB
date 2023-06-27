@@ -5,6 +5,7 @@ enum tipoCargo {
     ADMINISTRACION,
     LIMPIEZA,
     RECEPCION,
-    INFRAESTRUCTURA
+    INFRAESTRUCTURA,
+    SinCargo
 };
 #endif
