@@ -7,38 +7,35 @@
 #include <string>
 #include "Huesped.h"
 #include "Habitacion.h"
-#include "../ICollection/interfaces/ICollectible.h"
-#include "../ICollection/interfaces/IDictionary.h"
 
 class Reserva {
 public:
     Reserva();
     Reserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Habitacion* habitacion);
     virtual float calcularCosto() = 0; //sin metodo
-	virtual string tipoReserva() = 0; //sin metodo
+    virtual string tipoReserva() = 0; //sin metodo
+    virtual ~Reserva();
     int getCodigo();
-    virtual Huesped* getHuesped(){return NULL;};
-    DTFecha* getCheckIn();
-	DTFecha* getCheckOut();
-    void getReserva();
     EstadoReserva getEstado();
     Habitacion* getHabitacion();
-    void setHabitacion(Habitacion* habitacion);
-    virtual void setHuesped(Huesped* huesped);
+    DTFecha* getCheckIn();
+	DTFecha* getCheckOut();
+    virtual Huesped* getHuesped(){return NULL;};
+	virtual void setHuesped(Huesped* huesped){};
+    void setHabitacion(Habitacion *habitacion);
     void setCodigo(int codigo);
     void setCheckIn(DTFecha* checkIn); 
 	void setCheckOut(DTFecha* chechOut);
-    void setEstado(EstadoReserva estado);
-    virtual ~Reserva();
+	void setEstado(EstadoReserva estado);
+    void getReserva();
 protected:
-    int codigo;
-    DTFecha* checkIn; 
-    DTFecha* checkOut;
-    EstadoReserva estado;
-    float costoReserva;
-    //IDictionary* colEstadias;
-    Huesped* huesped;
-    Habitacion* habitacion;
+int codigo;
+DTFecha* checkIn; 
+DTFecha* checkOut;
+EstadoReserva estado;
+float costoReserva;
+Huesped* huesped;
+Habitacion* habitacion;
 };
 
 #endif

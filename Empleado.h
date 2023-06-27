@@ -4,7 +4,6 @@
 #include "TipoCargo.h"
 #include <map>
 #include <string>
-#include "../ICollection/interfaces/IDictionary.h"
 #include "Hostal.h"
 
 
@@ -21,7 +20,6 @@ public:
 private:
     Hostal* hostalTrabaja;
     tipoCargo cargo;
-    //IDictionary* colRespuestas;
   
 };
 #endif 

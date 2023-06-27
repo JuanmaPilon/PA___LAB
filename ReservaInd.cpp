@@ -16,12 +16,12 @@ ReservaIndividual::ReservaIndividual(int Codigo, DTFecha* checkIn, DTFecha* chec
 
 float ReservaIndividual::calcularCosto()
 {
-  // Falta el codigo
+  // Falta hacer calcular costo
   return 0;
 }
 
 
-void ReservaIndividual::borrarReserva(){
+void ReservaIndividual::borrarReserva(){  // no va?
   this->huesped=NULL;
   Reserva::setHabitacion(NULL);
   delete(this->getCheckIn());
@@ -29,15 +29,16 @@ void ReservaIndividual::borrarReserva(){
 }
 
 
-// string reservaIndividual::tipoReserva() { return "Individual"; }
 
-// reservaIndividual::~reservaIndividual() {}
+// string ReservaIndividual::TipoReserva() { return "Individual"; }
 
-// huesped *reservaIndividual::getHuesped()
-// {
-//   return this->hues;
-// }
-// void reservaIndividual::setHuesped(huesped *hues)
-// {
-//   this->hues = hues;
-// }
+// reservaIndividual::~reservaIndividual() {} 
+
+Huesped *ReservaIndividual::getHuesped()
+{
+  return this->huesped;
+}
+void ReservaIndividual::setHuesped(Huesped *Huesped)
+{
+  this->huesped = huesped;
+}

@@ -6,24 +6,22 @@
 #include "Empleado.h"
 using namespace std;
 
-//que hacemos con lo de estadia????
-
 class Hostal {
 public:
     Hostal();
     Hostal(string nombre, string direccion, string telefono);
     map<int, Habitacion *> getColeccionHabitaciones();
-    //map<string, Estadia *> getColeccionEstadia();
+    map<string, Estadia *> getColeccionEstadia();
     string getNombre();
     string getDireccion();
     string getTelefono();
     Habitacion* getHabitacion(int num);
-    //Estadia* getEstadia(string cod);
+    Estadia* getEstadia(string cod);
     void setNombre(string nombre);
     void setDireccion(string direccion);
     void setTelefono(string telefono);
     void agregarHabitacion(int num, Habitacion* hab);
-    //void agregarEstadia(string cod, Estadia* e);
+    void agregarEstadia(string cod, Estadia* e);
     void eliminarEstadia(string cod);
     ~Hostal();
 private:
@@ -31,7 +29,7 @@ private:
     string direccion;
     string telefono;
     map<int, Habitacion *> coleccionHabitaciones;
-    //map<string, Estadia *> coleccionEstadia;
+    map<string, Estadia *> coleccionEstadia;
 };
 
 

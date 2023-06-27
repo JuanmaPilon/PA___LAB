@@ -3,20 +3,26 @@
 #include "Reserva.h"
 #include <map>
 #include <string>
-#include "./ICollection/interfaces/ICollectible.h"
 #include "Hostal.h"
 
 class Habitacion {
 public:
     Habitacion();
-    virtual ~Habitacion();
-    void setHabitacion();
+    Habitacion(int numero, float precio, int capacidad);
+    int getNumero();
+    float getPrecio();
+    int getCapacidad();
+    Hostal* getHostal();
+  
+    void setNumero(int numero);
+    void setPrecio(float precio);
+    void setCapacidad(int capacidad);
+    void setHostalHabitacion(Hostal *hos);
 private:
     int numero;
-    float precioNoche;
+    float precio;
     int capacidad;
     Hostal *hostalHabitacion;
-    ICollectible* colReservas;
 };
 
 

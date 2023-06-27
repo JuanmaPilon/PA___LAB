@@ -5,9 +5,6 @@
 #include <string>
 #include "Reserva.h"
 #include "ReservaGrp.h"
-#include "../ICollection/interfaces/ICollectible.h"
-#include "../ICollection/interfaces/IDictionary.h"
-#include "../ICollection/interfaces/ICollection.h"
 using namespace std;
 
 class Huesped : public Usuario {
@@ -21,8 +18,6 @@ public:
     ~Huesped();
 private:
 bool esFinger;
-IDictionary* colEstadias;
-ICollection* colReservaGrp;
 Reserva* reserva;
 };
 

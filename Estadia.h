@@ -1,25 +1,30 @@
-/*#ifndef ESTADIA_H
+#ifndef ESTADIA_H
 #define ESTADIA_H
-#include "Calificacion.h"
+#include "DTFecha.h"
+#include "Reserva.h"
+#include <string>
 
 class Estadia {
 public:
     Estadia();
+    Estadia(int codigo, DTFecha* checkIn, DTFecha* checkOut, Reserva* reservaEstadia, Huesped* huespedEstadia);
     virtual ~Estadia();
-    void getEstadia();
-    void agregarReserva();
-    void agregarHuesped();
-    void setCheckOut();
-    void creoCalificacion();
-    void getDatosEstadias();
-    void buscoCalificacion();
+    string getPromo();
+    Reserva* getReserva();
+    Huesped* getHuesped();
+    void setFechaCheckIn(DTFecha* checkIN);
+    void setFechaCheckOut(DTFecha* checkOUT);
+    void setPromoCode(string codigo);
+
+    bool estaFinalizada();
 private:
     int codigo;
-    //DTFecha checkIn;
-    //DTFecha checkOut;
-    int promo;
-    Calificacion* calificacion;
+    string promo;
+    DTFecha* checkIn;
+    DTFecha* checkOut;
+    Reserva* reservaEstadia;
+    Huesped* huespedEstadia;
 
 };
 
-#endif*/
+#endif
