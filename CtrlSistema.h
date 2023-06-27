@@ -8,11 +8,12 @@
 #include "EstadoReserva.h"
 #include "DTFecha.h"
 using namespace std;
-//lo hacemos singleton ?
 class CtrlSistema : public ISistema{
 public:
-//copypaste de las opers de isistema
+    static CtrlSistema *getInstancia();
+    //copypaste de las opers de isistema
 private:
-
+    CtrlSistema();
+    static CtrlSistema *instancia; //singleton
 };
 

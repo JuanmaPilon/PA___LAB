@@ -18,7 +18,7 @@ public:
     void getHuesped();
     bool getEsFinger();
     void setEsFinger(bool esFinger);
-    virtual ~Huesped();
+    ~Huesped();
 private:
 bool esFinger;
 IDictionary* colEstadias;

@@ -1,4 +1,4 @@
-#ifndef ESTADIA_H
+/*#ifndef ESTADIA_H
 #define ESTADIA_H
 #include "Calificacion.h"
 
@@ -22,4 +22,4 @@ private:
 
 };
 
-#endif
+#endif*/

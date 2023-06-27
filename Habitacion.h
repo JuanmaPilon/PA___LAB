@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include "./ICollection/interfaces/ICollectible.h"
+#include "Hostal.h"
 
 class Habitacion {
 public:
@@ -14,6 +15,7 @@ private:
     int numero;
     float precioNoche;
     int capacidad;
+    Hostal *hostalHabitacion;
     ICollectible* colReservas;
 };
 

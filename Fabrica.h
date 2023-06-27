@@ -6,12 +6,12 @@
 class Fabrica: public ISistema {
     public:
         static Fabrica* getInstance();
-        ~Fabrica(); 
-
+        ~Fabrica();
+        ISistema* getISistema();
     private:
-        
         static Fabrica* instancia;
         Fabrica();
+        ~Fabrica();
 };
 #endif
 

@@ -7,22 +7,22 @@ Usuario::Usuario(){
 }
 
 Usuario::Usuario(string email, string nombre, string password) {
-  this->email = email;
-  this->nombre = nombre;
-  this->password = password;
+    this->email = email;
+    this->nombre = nombre;
+    this->password = password;
 };
      
 string Usuario::getEmail(){
- return this->email;
+    return this->email;
 }
 
 string Usuario::getNombre(){
-return this->nombre;
+    return this->nombre;
 }
 
- string Usuario::getPassword(){
- return this->password;
-    }  
+string Usuario::getPassword(){
+    return this->password;
+}  
        
 void Usuario::setEmail(string email){
     this->email = email;

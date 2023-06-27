@@ -14,7 +14,7 @@ string getPassword();
 void setEmail(string email);
 void setNombre(string nombre);
 void setPassword(string password);
-virtual ~Usuario();
+~Usuario();
 private:
 string email;
 string nombre;

@@ -3,7 +3,6 @@
 Fabrica* Fabrica::instancia = nullptr;
 
 Fabrica::Fabrica() {
-
 }
 
 Fabrica* Fabrica::getInstance() {
@@ -13,4 +12,9 @@ Fabrica* Fabrica::getInstance() {
     return instancia;
 }
 Fabrica::~Fabrica() {
+};
+ISistema* Fabrica::getISistema() {
+	return CtrlSistema::getInstancia();
+};
+Fabrica::~Fabrica() { 
 };

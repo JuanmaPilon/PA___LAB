@@ -5,10 +5,14 @@
 
 class ReservaGrupal : public Reserva{
 private:
-
+    map<string, Huesped*> coleccionHuespedGrupal;
 public:
     ReservaGrupal();
-    IDictionary* colReservaGrp;
+    ReservaGrupal(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, map<string,Huesped*>, Habitacion *habitacion);
+	float calcularCosto();
+	string tipoReserva();
+	map<string, Huesped*> getHuespedes();
+	~ReservaGrupal();
 };
 
 
