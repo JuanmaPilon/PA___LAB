@@ -5,6 +5,7 @@
 #include <iostream>
 #include <istream>
 #include <ios>
+#include "DTHabitacion.h"
 CtrlSistema::CtrlSistema(){
 }
 
@@ -121,37 +122,37 @@ void CtrlSistema::seleccionarHostal(string nomHostal)
   this->hostalSeleccionado = it->second;
 };
 
-Hostal *controladorHostal::getHostal()
+Hostal *CtrlSistema::getHostal()
 {
   return this->hostalSeleccionado;
 } // COMPLETAR
 
-void controladorHostal::asignarEmpHostal() {} // COMPLETAR
+void CtrlSistema::asignarEmpHostal() {} // COMPLETAR
 
-habitacion *controladorHostal::getHabitacion(hostal *hos, int num)
+Habitacion *CtrlSistema::getHabitacion(Hostal *hos, int num)
 {
-  map<int, habitacion *> h = hos->getColeccionHabitaciones();
-  map<int, habitacion *>::iterator iterador = h.find(num);
+  map<int, Habitacion *> h = hos->getColeccionHabitaciones();
+  map<int, Habitacion *>::iterator iterador = h.find(num);
   return (iterador->second);
 }
 
-habitacion *controladorHostal::seleccionarHabitacion(int numero)
+Habitacion *CtrlSistema::seleccionarHabitacion(int numero)
 {
   return NULL;
 }
 
-void controladorHostal::imprimirlnfoEstadia(string nomHostal, string emailestadia, int cod)
+void CtrlSistema::imprimirlnfoEstadia(string nomHostal, string emailestadia, int cod)
 {
-  map<string, hostal *>::iterator iter = this->coleccionHostales.find(nomHostal);
-  hostal *elhostal = iter->second;
+  map<string, Hostal *>::iterator iter = this->coleccionHostales.find(nomHostal);
+  Hostal *elhostal = iter->second;
 
-  map<string, estadia *> estadias = elhostal->getColeccionEstadia();
-  map<string, estadia *>::iterator it = estadias.find(to_string(cod) + emailestadia);
+  map<string, Estadia *> estadias = elhostal->getColeccionEstadia();
+  map<string, Estadia *>::iterator it = estadias.find(to_string(cod) + emailestadia);
 
   string PROMO;
   int quiere;
 
-  estadia *res = it->second;
+  Estadia *res = it->second;
   DTFecha *fecha1 = res->getCheckIn();
 
   DTFecha *fecha2=NULL;
@@ -168,7 +169,7 @@ void controladorHostal::imprimirlnfoEstadia(string nomHostal, string emailestadi
     cout << "aun no realiza checkOut";
   }
 
-  huesped *hue = res->getHuesped();
+  Huesped *hue = res->getHuesped();
   // cout << "Huesped: " << hue->getNombre() << endl;
 
   Reserva *reservaAsociada = res->getReserva();
@@ -189,11 +190,11 @@ void controladorHostal::imprimirlnfoEstadia(string nomHostal, string emailestadi
   if (quiere == 1)
   {
     string estado;
-    if (reservaAsociada->getEstado() == Abierta){
+    if (reservaAsociada->getEstado() == ABIERTA){
       estado = "Abierta";
-    } else if (reservaAsociada->getEstado()== Cerrada){
+    } else if (reservaAsociada->getEstado()== CERRADA){
       estado = "Cerrada";
-    } else if (reservaAsociada->getEstado() == Cancelada){
+    } else if (reservaAsociada->getEstado() == CANCELADA){
       estado = "Cancelada";
     }
 
@@ -202,15 +203,15 @@ void controladorHostal::imprimirlnfoEstadia(string nomHostal, string emailestadi
   }
 }
 
-void controladorHostal::imprimirHabitaciones(hostal *h)
+void CtrlSistema::imprimirHabitaciones(Hostal *h)
 {
-  map<int, habitacion *> habitaciones = h->getColeccionHabitaciones();
-  map<int, habitacion *>::iterator it;
+  map<int, Habitacion *> habitaciones = h->getColeccionHabitaciones();
+  map<int, Habitacion *>::iterator it;
 
   cout << "---------------------Listado de habitaciones disponibles----------------------------" << endl;
   for (it = habitaciones.begin(); it != habitaciones.end(); it++)
   {
-    habitacion *habAux = it->second;
+    Habitacion *habAux = it->second;
     DTHabitacion *aux = new DTHabitacion(habAux->getNumero(), habAux->getPrecio(), habAux->getCapacidad());
     cout << "-Numero de habitacion: " << aux->getNumero() << endl;
     cout << "-Precio: " << aux->getPrecio() << endl;
@@ -220,19 +221,19 @@ void controladorHostal::imprimirHabitaciones(hostal *h)
   }
 }
 
-estadia *controladorHostal::getEstadia()
+Estadia *CtrlSistema::getEstadia()
 {
   return this->estadiaSeleccionada;
 } // COMPLETAR
 
-void controladorHostal::seleccionarEstadia(int cod, string email)
+void CtrlSistema::seleccionarEstadia(int cod, string email)
 {
-  map<string, estadia *>::iterator iterador = hostalSeleccionado->getColeccionEstadia().find(to_string(cod) + email);
-  estadia *res = iterador->second;
+  map<string, Estadia *>::iterator iterador = hostalSeleccionado->getColeccionEstadia().find(to_string(cod) + email);
+  Estadia *res = iterador->second;
   this->estadiaSeleccionada = res;
 }
 
-void controladorHostal::imprimirInfoBasicaHostal(hostal *hos)
+void CtrlSistema::imprimirInfoBasicaHostal(Hostal *hos)
 {
   cout << "-Nombre del hostal: " << hos->getNombre() << endl;
   cout << "-Direccion: " << hos->getDireccion() << endl;
@@ -240,8 +241,8 @@ void controladorHostal::imprimirInfoBasicaHostal(hostal *hos)
   cout << "-------------" << endl;
 };
 
-void controladorHostal::confirmarAltaHabitacion(){
-  habitacion *hab = new habitacion(this->numeroHabitacion, this->precioHabitacion, this->capacidadHabitacion);
+void CtrlSistema::confirmarAltaHabitacion(){
+  Habitacion *hab = new Habitacion(this->numeroHabitacion, this->precioHabitacion, this->capacidadHabitacion);
   this->hostalSeleccionado->agregarHabitacion(numeroHabitacion, hab);
   hab->setHostalHabitacion(this->hostalSeleccionado);
 
@@ -252,17 +253,17 @@ void controladorHostal::confirmarAltaHabitacion(){
 
 } // COMPLETAR
 
-void controladorHostal::agregarEstadia(string key, estadia* est){
+void CtrlSistema::agregarEstadia(string key, Estadia* est){
   this->hostalSeleccionado->agregarEstadia(key, est);
   this->hostalSeleccionado = NULL;
 }
 
 
-void controladorHostal::ingresaristarEstadiasFinalizadas(string emailUsuario) {} // COMPLETAR
+void CtrlSistema::ingresaristarEstadiasFinalizadas(string emailUsuario) {} // COMPLETAR
 
 
 
-void controladorHostal::ingresarInformacionHabitacion(int num, float precio, int capacidad)
+void CtrlSistema::ingresarInformacionHabitacion(int num, float precio, int capacidad)
 {
   this->numeroHabitacion = num;
   this->precioHabitacion = precio;
@@ -270,12 +271,12 @@ void controladorHostal::ingresarInformacionHabitacion(int num, float precio, int
 }
 
 
-void controladorHostal::listarEstadiasFinalizadas(string email){
-  map<string, hostal *>::iterator it2 = this->coleccionHostales.find(this->hostalSeleccionado->getNombre());
-  hostal *elHostal = it2->second;
+void CtrlSistema::listarEstadiasFinalizadas(string email){
+  map<string, Hostal *>::iterator it2 = this->coleccionHostales.find(this->hostalSeleccionado->getNombre());
+  Hostal *elHostal = it2->second;
   cout << "Hostal seleccionado: " << elHostal->getNombre() << endl;
-  map<string, estadia *> estad = elHostal->getColeccionEstadia();
-  map<string, estadia *>::iterator it;
+  map<string, Estadia *> estad = elHostal->getColeccionEstadia();
+  map<string, Estadia *>::iterator it;
 
   cout << "---------------------Listado de estadias finalizadas----------------------------" << endl;
   for (it = estad.begin(); it != estad.end(); it++)
@@ -290,7 +291,7 @@ void controladorHostal::listarEstadiasFinalizadas(string email){
     if (it->second->getReserva()->getHabitacion()->getHostal()->getNombre() == this->hostalSeleccionado->getNombre() &&
         it->second->getHuesped()->getEmail() == email && (it->second->getCheckOut() != NULL))
     {
-      estadia *est = it->second;
+      Estadia *est = it->second;
       DTEstadia *aux = new DTEstadia(est->getCheckIn(), est->getCheckOut(), est->getReserva()->getCodigo(), est->getHuesped()->getEmail());
       cout << "-Numero de reserva: " << aux->getCodigoReserva() << endl;
       cout << "-Correo del huesped: " << aux->getEmailHuesped() << endl;
@@ -304,30 +305,13 @@ void controladorHostal::listarEstadiasFinalizadas(string email){
   }
 }
 
-void controladorHostal::agregarObservador(IObserver *o){
-  observers.insert(o);
-}
 
-void controladorHostal::eliminarObservador(IObserver *o){
-  observers.erase(o);
-}
+void CtrlSistema::imprimirEstadias(string nomHostal){ // imprime todas las estadias (no la info)
 
-void controladorHostal::notificarObservadores(calificacion *cal){
-  set<IObserver *>::iterator it;
-  for (it = observers.begin(); it != observers.end(); ++it){
-    IObserver* papa = *it;
-    papa->getNombresito();
-    cout << "ya mande";
-    papa->notify(cal);
-  }
-}
-
-void controladorHostal::imprimirEstadias(string nomHostal){ // imprime todas las estadias (no la info)
-
-  map<string, hostal *>::iterator iter = this->coleccionHostales.find(nomHostal);
-  hostal *elhostal = iter->second;
-  map<string, estadia *> estadias = elhostal->getColeccionEstadia();
-  map<string, estadia *>::iterator it;
+  map<string, Hostal *>::iterator iter = this->coleccionHostales.find(nomHostal);
+  Hostal *elhostal = iter->second;
+  map<string, Estadia *> estadias = elhostal->getColeccionEstadia();
+  map<string, Estadia *>::iterator it;
   cout << "---------------------Listado de estadias del hostal----------------------------" << endl;
   for (it = estadias.begin(); it != estadias.end(); it++)
   {

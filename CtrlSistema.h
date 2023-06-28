@@ -13,6 +13,7 @@
 #include "Reloj.h"
 #include "DTHostal.h"
 #include "DTEstadia.h"
+#include "DTHabitacion.h"
 #include "Habitacion.h"
 #include <string>
 #include <map>
@@ -121,4 +122,19 @@ private:
     map<int, Reserva *> coleccionReservas;
     map<string, Hostal *> coleccionHostales;
     map<string, Usuario *> coleccionUsuarios;
+    //////////////////////////////////////////////memoria de hostales/////////////////////////////////////
+    //Memoria de atributos de habitacion
+        int numeroHabitacion;
+        float precioHabitacion;
+        int capacidadHabitacion;
+
+        //Memoria de seleccion de hostal
+        Hostal *hostalSeleccionado;
+
+        //Memoria de seleccion de habitacion
+        Habitacion *habitacionSeleccionada;
+
+        //Memoria de seleccion de estadia
+        Estadia *estadiaSeleccionada;
+
 };
