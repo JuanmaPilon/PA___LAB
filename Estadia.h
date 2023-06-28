@@ -12,6 +12,8 @@ public:
     string getPromo();
     Reserva* getReserva();
     Huesped* getHuesped();
+    DTFecha* getCheckIn();
+    DTFecha* getCheckOut();
     void setFechaCheckIn(DTFecha* checkIN);
     void setFechaCheckOut(DTFecha* checkOUT);
     void setPromoCode(string codigo);

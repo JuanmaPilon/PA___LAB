@@ -22,10 +22,15 @@ Reserva* Estadia::getReserva(){
 Huesped* Estadia::getHuesped(){
     return this->huespedEstadia;
 }
-void Estadia::setFechaCheckIn(DTFecha* checkIN){
-    this->checkIn=checkIN;
+DTFecha* Estadia::getCheckIn(){
+    return this->checkIn;
 }
-
+DTFecha* Estadia::getCheckOut(){
+    return this->checkOut;
+}
+void Estadia::setFechaCheckIn(DTFecha* checkIn){
+    this->checkIn=checkIn;
+}
 void Estadia::setFechaCheckOut(DTFecha* checkOUT){
     this->checkOut=checkOUT;
 }
