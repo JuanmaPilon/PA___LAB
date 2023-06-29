@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-ReservaGrupal::ReservaGrupal(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, map<string,Huesped*> huespedes, Habitacion *habitacion):Reserva(codigo,checkIn,checkOut,estado,habitacion){
+ReservaGrupal::ReservaGrupal(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, map<string,Huesped*> huespedes, Habitacion *habitacion):Reserva(Codigo,checkIn,checkOut,estado,habitacion){
     this->coleccionHuespedGrupal=huespedes;
 }
 

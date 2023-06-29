@@ -11,7 +11,7 @@
 class Reserva {
 public:
     Reserva();
-    Reserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Habitacion* habitacion);
+    Reserva(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Habitacion* habitacion);
     virtual float calcularCosto() = 0; //sin metodo
     virtual string tipoReserva() = 0; //sin metodo
     virtual ~Reserva();
@@ -28,8 +28,9 @@ public:
 	void setCheckOut(DTFecha* chechOut);
 	void setEstado(EstadoReserva estado);
     void getReserva();
+    virtual map<string, Huesped*> getHuespedes(){map<string, Huesped*> res; return res;};
 protected:
-int codigo;
+int Codigo;
 DTFecha* checkIn; 
 DTFecha* checkOut;
 EstadoReserva estado;

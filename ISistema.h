@@ -18,6 +18,7 @@ class ISistema
 {
 private:
 public:
+    ISistema(){};
     //////////////////////////////////////////////////////////todo lo de HOSTAL////////////////////////////////////////////////////////////////////
     virtual void confirmarAltaHostal(string nombre, string direccion, string telefono) = 0;
     virtual void imprimirCalificacionesSR(Hostal *hos) = 0;

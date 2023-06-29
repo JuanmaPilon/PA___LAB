@@ -7,7 +7,7 @@ private:
     map<string, Huesped*> coleccionHuespedGrupal;
 public:
     ReservaGrupal();
-    ReservaGrupal(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, map<string,Huesped*>, Habitacion *habitacion);
+    ReservaGrupal(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, map<string,Huesped*>, Habitacion *habitacion);
 	float calcularCosto();
 	string tipoReserva();
 	map<string, Huesped*> getHuespedes();

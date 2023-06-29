@@ -5,15 +5,15 @@
 using namespace std;
 Reserva::Reserva(){
 }
-Reserva::Reserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Habitacion* hab){
-	this->codigo = codigo;
+Reserva::Reserva(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Habitacion* hab){
+	this->Codigo = Codigo;
 	this->checkIn = checkIn;
 	this->checkOut = checkOut;
 	this->estado =estado;
 	this->habitacion= hab;
 }
 int Reserva::getCodigo(){
-	return this->codigo;
+	return this->Codigo;
 }
 DTFecha* Reserva::getCheckIn(){
 	return this->checkIn;
@@ -24,8 +24,8 @@ DTFecha* Reserva::getCheckOut(){
 EstadoReserva Reserva::getEstado(){
 	return this->estado;
 }
-void Reserva::setCodigo(int codigo){
-	this->codigo = codigo;
+void Reserva::setCodigo(int Codigo){
+	this->Codigo = Codigo;
 }
 void Reserva::setCheckIn(DTFecha* checkIn){
 	this->checkIn = checkIn;

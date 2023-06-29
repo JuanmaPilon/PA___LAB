@@ -25,7 +25,7 @@ using namespace std;
 class CtrlSistema : public ISistema
 {
 public:
-    static CtrlSistema *getInstancia(); // singleton
+    static CtrlSistema* getInstancia();
     /////////////////////////////////////////////////////////opers de ISistema//////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////// todo lo de HOSTAL ////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@ public:
     void eliminarReserva(int codigo, Hostal *hos);
     Reserva *getReserva();
     void cancelarReserva();
-    void confirmarReserva(Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva);
+    void confirmarReserva(int Codigo,Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva);
     void ingresarInformacionReserva(DTFecha checkIN, DTFecha checkOUT, DTReserva *tipoReserva);
     void obtenerReserva();
     void obtenerReservasPorHostal(string nomHostal);
@@ -116,8 +116,8 @@ public:
     void imprimirTodaLaInfoDeUsuarios();
 
 private:
-    CtrlSistema();                 // singleton
-    static CtrlSistema *instancia; // singleton
+    CtrlSistema();
+    static CtrlSistema *instancia;
     // colecciones
     map<int, Reserva *> coleccionReservas;
     map<string, Hostal *> coleccionHostales;
@@ -136,5 +136,16 @@ private:
 
         //Memoria de seleccion de estadia
         Estadia *estadiaSeleccionada;
+    //////////////////////////////////////////////memoria de usuarios/////////////////////////////////////////////
+        string nombre;
+        string email;
+        string password;
+        bool esFinger;
+        tipoCargo cargo;
+        Hostal* hostalTrabaja;
+
+
+        Huesped* huespedSeleccionado;
+        Empleado* empleadoSeleccionado;
 
 };
