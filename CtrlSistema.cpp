@@ -9,6 +9,8 @@
 #include "ReservaGrp.h"
 #include "DTHabitacion.h"
 #include "Fabrica.h"
+#include "DTEmpleado.h"
+
 CtrlSistema::CtrlSistema(){
 }
 
@@ -327,7 +329,6 @@ void CtrlSistema::confirmarReserva(int Codigo, Hostal *h, DTFecha *checkIn, DTFe
 {
 	if (tipoDeReserva == 0)
 	{ // reserva individual
-  //int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva Estado, Huesped* huesped, Habitacion* habitacion
 		ReservaIndividual *res = new ReservaIndividual(Codigo ,checkIn, checkOut, EstadoReserva::ABIERTA, hue, hab);
 		coleccionReservas.insert({Codigo, res});
 	}
@@ -530,10 +531,10 @@ set<DTEmpleado*> CtrlSistema::obtenerEmpleadosNoRegistrados(Hostal *hos){
                 } else if(e->getCargo() == "Infraestructura") {
                      cargo= INFRAESTRUCTURA;
                 } else {
-                    cargo= NoInicializado;
+                    cargo= SinCargo;
                 }
-                
-                DTEmpleado *aux = new DTEmpleado(e->getEmail(), e->getNombre() , e->getPassword(), cargo,e->getEstaSuscrito() ,e->getHostalTrabaja());
+                //DTEmpleado::DTEmpleado(string email, string nombre, string password, tipoCargo cargo, Hostal *nomHostal){
+                DTEmpleado *aux = new DTEmpleado(e->getEmail(), e->getNombre() , e->getPassword(), cargo, e->getHostalTrabaja());
                 res.insert(aux);
             } 
         }
@@ -542,74 +543,74 @@ set<DTEmpleado*> CtrlSistema::obtenerEmpleadosNoRegistrados(Hostal *hos){
     return res;
 };
 
-huesped* controladorUsuario::findHuesped(string nombre){
-    map<string, usuario*>::iterator it;
+Huesped* CtrlSistema::findHuesped(string nombre){
+    map<string, Usuario*>::iterator it;
 	it = this->coleccionUsuarios.find(nombre);
-	huesped *res = dynamic_cast<huesped*>(it->second);
+	Huesped *res = dynamic_cast<Huesped*>(it->second);
 	return res;
 }
 
-void controladorUsuario::setNombre(string nombre){
+void CtrlSistema::setNombre(string nombre){
     this->nombre = nombre;
 };
 
-void controladorUsuario::setEmail(string email){
+void CtrlSistema::setEmail(string email){
     this->email = email;
 };
 
-void controladorUsuario::setContrasenia(string contrasenia){
+void CtrlSistema::setContrasenia(string contrasenia){
     this->password = contrasenia;
 };
 
-void controladorUsuario::setCargo(cargoEmpleado cargo){
+void CtrlSistema::setCargo(tipoCargo cargo){
     this->cargo = cargo;
 };
 
-void controladorUsuario::setEsFinger(bool finger){
+void CtrlSistema::setEsFinger(bool finger){
     this->esFinger = finger;
 };
 
 
-void controladorUsuario::seleccionarEmpleado(string email){
-    map<string, usuario*>::iterator it = this->coleccionUsuarios.find(email);
-    empleado* e = dynamic_cast<empleado*>(it->second);
+void CtrlSistema::seleccionarEmpleado(string email){
+    map<string, Usuario*>::iterator it = this->coleccionUsuarios.find(email);
+    Empleado* e = dynamic_cast<Empleado*>(it->second);
 	this->empleadoSeleccionado = e;
 };
 
-empleado* controladorUsuario::getEmpleado(){
+Empleado* CtrlSistema::getEmpleado(){
     return this->empleadoSeleccionado;
 }
 
-usuario* controladorUsuario::seleccionarUsuario(string nombre){
-    usuario *user = new usuario();
+Usuario* CtrlSistema::seleccionarUsuario(string nombre){
+    Usuario *user = new Usuario();
     return user;
 };
 
-void controladorUsuario::asignarCargo(string nombre, cargoEmpleado cargo){}
+void CtrlSistema::asignarCargo(string nombre, tipoCargo cargo){}
 	
-    huesped* controladorUsuario::seleccionarHuesped(string email) {
-	map<string, usuario*>::iterator it= this->coleccionUsuarios.find(email);
-    huesped* h = dynamic_cast<huesped*>(it->second);
+Huesped* CtrlSistema::seleccionarHuesped(string email) {
+	map<string, Usuario*>::iterator it= this->coleccionUsuarios.find(email);
+    Huesped* h = dynamic_cast<Huesped*>(it->second);
 	this->huespedSeleccionado = h;
     return huespedSeleccionado;
 }
 
-huesped* controladorUsuario::getHuesped() {
+Huesped* CtrlSistema::getHuesped() {
   return this->huespedSeleccionado;
 } 
 
-empleado* controladorUsuario::findEmpleado(string email){
-    map<string,usuario*>::iterator it = this->coleccionUsuarios.find(email);
-    empleado* e = dynamic_cast<empleado*>(it->second);
+Empleado* CtrlSistema::findEmpleado(string email){
+    map<string,Usuario*>::iterator it = this->coleccionUsuarios.find(email);
+    Empleado* e = dynamic_cast<Empleado*>(it->second);
     return e;
 }
 
 
-bool controladorUsuario::existeUsuario(){
+bool CtrlSistema::existeUsuario(){
     return (this->coleccionUsuarios.count(this->email) > 0);
 };
 
-void controladorUsuario::ingresarDatosUsuario(){
+void CtrlSistema::ingresarDatosUsuario(){
     bool tipoUsuarioInvalido;
     cout << "Indique si el usuario es un empleado (E) o un huesped (H): ";
     string tipoUsuario; 
@@ -622,7 +623,7 @@ void controladorUsuario::ingresarDatosUsuario(){
 
             bool cargoIngresoInvalido;
             string cargoIngreso;
-            cargoEmpleado cargo;
+            tipoCargo cargo;
 
             do {
                 cout << "Indicar si el empleado pertenece al area de limpieza (L), administracion (A), recepcion (R) o infraestructua (I): ";
@@ -630,19 +631,19 @@ void controladorUsuario::ingresarDatosUsuario(){
 
                 if (cargoIngreso == "L" || cargoIngreso == "l"){
                     cargoIngresoInvalido = false;
-                    cargo = Limpieza;
+                    cargo = LIMPIEZA;
 
                 } else if (cargoIngreso == "A" || cargoIngreso == "a"){
                     cargoIngresoInvalido = false;
-                    cargo = Administracion;
+                    cargo = ADMINISTRACION;
 
                 } else if (cargoIngreso == "R" || cargoIngreso == "r"){
                     cargoIngresoInvalido = false;
-                    cargo = Recepcion;
+                    cargo = RECEPCION;
 
                 } else if (cargoIngreso == "I" || cargoIngreso == "i"){
                     cargoIngresoInvalido = false;
-                    cargo = Infraestructura;
+                    cargo = INFRAESTRUCTURA;
 
                 } else {
                     cargoIngresoInvalido = true;
@@ -689,16 +690,16 @@ void controladorUsuario::ingresarDatosUsuario(){
     } while (tipoUsuarioInvalido);
 }
 
-void controladorUsuario::actualizarEmailUsuario(string email){
+void CtrlSistema::actualizarEmailUsuario(string email){
     this->email = email;
 }
 
-void controladorUsuario::confirmarAltaUsuario(){
-    if (this->cargo == NoInicializado){
-        huesped *nuevoHuesped = new huesped(this->email, this->nombre, this->password, this->esFinger);
+void CtrlSistema::confirmarAltaUsuario(){
+    if (this->cargo == SinCargo){
+        Huesped *nuevoHuesped = new Huesped(this->email, this->nombre, this->password, this->esFinger);
         this->coleccionUsuarios.insert({this->email, nuevoHuesped});
     } else {
-        empleado *nuevoEmpleado = new empleado(this->email, this->nombre, this->password, this->cargo, NULL);
+        Empleado *nuevoEmpleado = new Empleado(this->email, this->nombre, this->password, this->cargo, NULL);
         this->coleccionUsuarios.insert({this->email, nuevoEmpleado});
     }
 
@@ -707,43 +708,43 @@ void controladorUsuario::confirmarAltaUsuario(){
     this->nombre = "";
     this->email = "";
     this->password = "";
-    this->cargo = NoInicializado;
+    this->cargo = SinCargo;
     this->esFinger = false;
 }
 
-void controladorUsuario::cancelarAltaIngreso(){
+void CtrlSistema::cancelarAltaIngreso(){
     cout << "Se ha cancelado el ingreso del usuario\n";
     
     this->nombre = "";
     this->email = "";
     this->password = "";
-    this->cargo = NoInicializado;
+    this->cargo = SinCargo;
     this->esFinger = false;
 }
 
-void controladorUsuario::imprimirUsuarios(){ //imprime solo los nombres de los usuarios
+void CtrlSistema::imprimirUsuarios(){ //imprime solo los nombres de los usuarios
     
-    map<string,usuario*> usuarios =this->coleccionUsuarios; //coleccion de usuarios
-    map<string,usuario*> :: iterator itU; 
+    map<string,Usuario*> usuarios =this->coleccionUsuarios; //coleccion de usuarios
+    map<string,Usuario*> :: iterator itU; 
 
-    map<string, empleado*> empleados;
-    map<string, empleado*>::iterator itER;
+    map<string, Empleado*> empleados;
+    map<string, Empleado*>::iterator itER;
 
-    map<string, huesped*> huespedes;
-    map<string, huesped*>::iterator it;
+    map<string, Huesped*> huespedes;
+    map<string, Huesped*>::iterator it;
 
     for (itU = this->coleccionUsuarios.begin() ; itU != this->coleccionUsuarios.end(); itU ++){
-        if (empleado* e = dynamic_cast<empleado*>(itU->second)){
+        if (Empleado* e = dynamic_cast<Empleado*>(itU->second)){
             empleados.insert({e->getEmail(), e});
         } else {
-            huesped* h = dynamic_cast<huesped*>(itU->second);
+            Huesped* h = dynamic_cast<Huesped*>(itU->second);
             huespedes.insert({h->getEmail(), h});
         }
     }
 
     cout << "---------------------Listado de huespedes registrados en el sistema----------------------------" << endl;
     for (it = huespedes.begin(); it != huespedes.end(); it++){
-    huesped *hueAux = it->second;
+    Huesped *hueAux = it->second;
     DTHuesped *aux = new DTHuesped(hueAux->getNombre(), hueAux->getEmail(), hueAux->getEsFinger());
     cout << "-Nombre del huesped: " << aux->getNombre() << endl;
     cout << "-Email: " << aux->getEmail() << endl;
@@ -753,7 +754,7 @@ void controladorUsuario::imprimirUsuarios(){ //imprime solo los nombres de los u
 
      cout << "---------------------Listado de empleados registrados en el sistema----------------------------" << endl;
     for (itER = empleados.begin(); itER != empleados.end(); itER++){
-    empleado *empAux = itER->second;
+    Empleado *empAux = itER->second;
     string nomhos;
     cout << "-Nombre del empleado: " << empAux->getNombre() << endl;
     cout << "-Email: " << empAux->getEmail() << endl;
@@ -762,9 +763,9 @@ void controladorUsuario::imprimirUsuarios(){ //imprime solo los nombres de los u
 
 
 
-void controladorUsuario::obtenerInfoUsuario(string rol, string email){
+void CtrlSistema::obtenerInfoUsuario(string rol, string email){
     if(rol=="H"){
-        huesped* h=findHuesped(email);
+        Huesped* h =findHuesped(email);
         DTHuesped * aux = new DTHuesped(h->getNombre(),h->getEmail(),h->getEsFinger());
         cout << "-Nombre del empleado: " << aux->getNombre() << endl;
         cout << "-Email: " << aux->getEmail() << endl;
@@ -773,8 +774,8 @@ void controladorUsuario::obtenerInfoUsuario(string rol, string email){
         else
             cout << "-Es Finger: No" << endl;
     } else {
-        empleado* e=findEmpleado(email);
-        hostal* h= e->getHostalTrabaja();
+        Empleado* e =findEmpleado(email);
+        Hostal* h = e->getHostalTrabaja();
 
         cout << "-Nombre del empleado: " << e->getNombre() << endl;
         cout << "-Email: " << e->getEmail() << endl;
@@ -786,37 +787,37 @@ void controladorUsuario::obtenerInfoUsuario(string rol, string email){
     }
 }
 
-bool controladorUsuario::obtenerEsFinger(){
+bool CtrlSistema::obtenerEsFinger(){
         return true;
 }
 
-void controladorUsuario::obtenerInfoEmpleado(){}
+void CtrlSistema::obtenerInfoEmpleado(){}
 
-empleado* controladorUsuario::obtenerEmpleado(){
+Empleado* CtrlSistema::obtenerEmpleado(){
     return NULL;
 }
 
-void controladorUsuario::obtenerEmpleados(string nomHostal){}
+void CtrlSistema::obtenerEmpleados(string nomHostal){}
 
-void controladorUsuario::obtenerReservasHuesped(string email){}
+void CtrlSistema::obtenerReservasHuesped(string email){}
 
-void controladorUsuario::obtenerHuespedes(){
+void CtrlSistema::obtenerHuespedes(){
 
-    map<string,usuario*> usuarios =this->coleccionUsuarios; //coleccion de usuarios
-    map<string,usuario*> :: iterator itU; 
+    map<string,Usuario*> usuarios =this->coleccionUsuarios; //coleccion de usuarios
+    map<string,Usuario*> :: iterator itU; 
 
-    map<string, huesped*> huespedes;
-    map<string, huesped*>::iterator it;
+    map<string, Huesped*> huespedes;
+    map<string, Huesped*>::iterator it;
 
     for (itU = this->coleccionUsuarios.begin() ; itU != this->coleccionUsuarios.end(); itU ++){
-        if (huesped* h = dynamic_cast<huesped*>(itU->second)){
+        if (Huesped* h = dynamic_cast<Huesped*>(itU->second)){
             huespedes.insert({h->getEmail(), h});
         }
     }
 
      cout << "---------------------Listado de usuarios registrados en el sistema----------------------------" << endl;
     for (it = huespedes.begin(); it != huespedes.end(); it++){
-        huesped *hueAux = it->second;
+        Huesped *hueAux = it->second;
         DTHuesped *aux = new DTHuesped(hueAux->getNombre(), hueAux->getEmail(), hueAux->getEsFinger());
         cout << "-Nombre del huesped: " << aux->getNombre() << endl;
         cout << "-Email: " << aux->getEmail() << endl;
@@ -826,11 +827,11 @@ void controladorUsuario::obtenerHuespedes(){
     }
 }
 
-void controladorUsuario::obtenerUsuarios(){}
+void CtrlSistema::obtenerUsuarios(){}
 
-void controladorUsuario::imprimirTodaLaInfoDeUsuarios(){
-    map<string,usuario*> usuarios = this->coleccionUsuarios; //coleccion de usuarios
-    map<string,usuario*> :: iterator itU; 
+void CtrlSistema::imprimirTodaLaInfoDeUsuarios(){
+    map<string,Usuario*> usuarios = this->coleccionUsuarios; //coleccion de usuarios
+    map<string,Usuario*> :: iterator itU; 
 
  // cout << "--------------------------------------------------------" << endl;
     cout << "-                                                      -" << endl;
@@ -838,7 +839,7 @@ void controladorUsuario::imprimirTodaLaInfoDeUsuarios(){
     cout << endl;
 
     for (itU = this->coleccionUsuarios.begin() ; itU != this->coleccionUsuarios.end(); itU ++){
-        if (huesped* h = dynamic_cast<huesped*>(itU->second)){
+        if (Huesped* h = dynamic_cast<Huesped*>(itU->second)){
             cout << "-Nombre del huesped: " << h->getNombre() << endl;
             cout << "-Email: " << h->getEmail() << endl;
             cout << "-Es finger: ";
@@ -858,7 +859,7 @@ void controladorUsuario::imprimirTodaLaInfoDeUsuarios(){
     cout << endl;
 
     for (itU = this->coleccionUsuarios.begin() ; itU != this->coleccionUsuarios.end(); itU ++){
-        if (empleado* e = dynamic_cast<empleado*>(itU->second)){
+        if (Empleado* e = dynamic_cast<Empleado*>(itU->second)){
             cout << "-Nombre del empleado: " << e->getNombre() << endl;
             cout << "-Email: " << e->getEmail() << endl;
             cout << "-Contrasenia: " << e->getPassword() << endl;
@@ -876,39 +877,25 @@ void controladorUsuario::imprimirTodaLaInfoDeUsuarios(){
 
 
 
-void controladorUsuario::obtenerEmpleados(){
+void CtrlSistema::obtenerEmpleados(){
 
-    map<string,usuario*> usuarios =this->coleccionUsuarios; //coleccion de usuarios
-    map<string,usuario*> :: iterator itU; 
+    map<string,Usuario*> usuarios =this->coleccionUsuarios; //coleccion de usuarios
+    map<string,Usuario*> :: iterator itU; 
 
-    map<string, empleado*> empleados;
-    map<string, empleado*>::iterator it;
+    map<string, Empleado*> empleados;
+    map<string, Empleado*>::iterator it;
 
     for (itU = this->coleccionUsuarios.begin() ; itU != this->coleccionUsuarios.end(); itU ++){
-        if (empleado* e = dynamic_cast<empleado*>(itU->second)){
+        if (Empleado* e = dynamic_cast<Empleado*>(itU->second)){
             empleados.insert({e->getEmail(), e});
         }
     }
 
     for (it = empleados.begin(); it != empleados.end(); it++){
-        empleado *empAux = it->second;
+        Empleado *empAux = it->second;
         cout<< "-Nombre: "<< empAux->getNombre() << endl;
         cout<< "-Email: "<< empAux->getEmail() << endl;
         cout << "----------------------------"<< endl;
     }//for
 }
 
-void controladorUsuario::imprimirNotificaciones(){
-    set<calificacion*> cal= this->empleadoSeleccionado->getNotificaciones();
-    set<calificacion*>::iterator it= cal.begin();
-    for (it = cal.begin(); it != cal.end(); it++){
-        calificacion* cal= *it;
-        DTCalificacion* c= new DTCalificacion(cal->getCalificacion(), cal->getId(), cal->getComentario(), "", cal->getFechaRealizacion());
-        cout<< "-Calificacion: "<< c->getCalificacion() << endl;
-        cout<< "-Id: "<< c->getId() << endl;
-        cout<< "-Comentario: "<< c->getComentario() << endl;
-        DTFecha* f= c->getFechaRealizacion();
-        cout << "-Fecha de realizacion: "<< f->getDia() << "/" << f->getMes() << "/" << f->getAnio() << " a las" << f->getHora() << endl; 
-        cout<< "-----------" << endl;
-        delete(c);
-    }

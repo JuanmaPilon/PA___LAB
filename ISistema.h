@@ -21,10 +21,8 @@ public:
     ISistema(){};
     //////////////////////////////////////////////////////////todo lo de HOSTAL////////////////////////////////////////////////////////////////////
     virtual void confirmarAltaHostal(string nombre, string direccion, string telefono) = 0;
-    virtual void imprimirCalificacionesSR(Hostal *hos) = 0;
     virtual void imprimirHabitaciones(Hostal *h) = 0;
     virtual bool existeEstadia(string email) = 0;
-    virtual bool existeCalificacion(int id, string email, Hostal *hos) = 0;
     virtual bool existeHostal(string nombre) = 0;
     virtual void finalizarEstadia(string email) = 0;
     virtual bool estadiaValida(string email) = 0;
@@ -37,28 +35,22 @@ public:
     virtual void asignarEmpHostal() = 0;
     virtual Habitacion *getHabitacion(Hostal *hos, int num) = 0;
     virtual void imprimirlnfoEstadia(string nomHostal, string emailestadia, int cod) = 0;
-    virtual Estadia *getEstadia() = 0;
+    virtual Estadia *getEstadia() = 0; //
     virtual void seleccionarEstadia(int cod, string email) = 0;
-    virtual void obtenerTop3Hostales() = 0;
-    virtual void obtenerDetallesHostal(Hostal *hos) = 0;
     virtual void confirmarAltaHabitacion() = 0;
     virtual void ingresaristarEstadiasFinalizadas(string emailUsuario) = 0;
-    virtual void ingresarlnfoCalificacion(string mensaje, int calificacion) = 0;
     virtual void ingresarInformacionHabitacion(int num, float precio, int capacidad) = 0;
-    virtual void altaCalificacion() = 0;
     virtual void listarEstadiasFinalizadas(string email) = 0;
     virtual void imprimirInfoBasicaHostal(Hostal *hos) = 0;
 
     virtual void agregarEstadia(string key, Estadia *est) = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////////////todo lo de reserva//////////////////////////////////////////////////////////////////////////////
-    virtual void setContadorReserva() = 0;
     virtual void obtenerReservas(Hostal *hos) = 0;
     virtual Reserva *seleccionarReserva(int codigo) = 0;
-    virtual void eliminarReserva(int codigo, Hostal *hos) = 0;
     virtual Reserva *getReserva() = 0;
     virtual void cancelarReserva() = 0;
-    virtual void confirmarReserva(Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva) = 0;
+    virtual void confirmarReserva(int Codigo,Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva) = 0;
     virtual void ingresarInformacionReserva(DTFecha checkIN, DTFecha checkOUT, DTReserva *tipoReserva) = 0;
     virtual void obtenerReserva() = 0;
     virtual void obtenerReservasPorHostal(string nomHostal) = 0;
@@ -87,7 +79,6 @@ public:
     virtual set<DTEmpleado *> obtenerEmpleadosNoRegistrados(Hostal *hos) = 0;
     virtual void imprimirReservasHuesped(string emailHuesped) = 0;
 
-    virtual void imprimirNotificaciones() = 0;
 
     // setters
     virtual void setNombre(string nombre) = 0;

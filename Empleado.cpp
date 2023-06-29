@@ -21,7 +21,7 @@ string Empleado::getCargo(){
 Hostal* Empleado::getHostalTrabaja(){
     return this->hostalTrabaja;
 }
-void Empleado::getNombre(){
+string Empleado::getNombre(){
     this->Usuario::getNombre();
 }
 void Empleado::setHostalTrabaja(Hostal* hos){
