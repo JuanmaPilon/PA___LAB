@@ -8,9 +8,7 @@ using namespace std;
 
 ReservaIndividual::ReservaIndividual(){
 }
-
-
-ReservaIndividual::ReservaIndividual(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva Estado, Huesped* huesped, Habitacion* habitacion): Reserva(codigo, checkIn, checkOut, estado, habitacion){
+ReservaIndividual::ReservaIndividual(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva Estado, Huesped* huesped, Habitacion* habitacion): Reserva(Codigo, checkIn, checkOut, estado, habitacion){
     this->huesped= huesped;
 }
 
@@ -28,7 +26,7 @@ void ReservaIndividual::borrarReserva(){  // no va?
   delete(this->getCheckOut());
 }
 
-
+ReservaIndividual::~ReservaIndividual() {}
 
 // string ReservaIndividual::TipoReserva() { return "Individual"; }
 
@@ -42,3 +40,6 @@ void ReservaIndividual::setHuesped(Huesped *Huesped)
 {
   this->huesped = huesped;
 }
+
+string ReservaIndividual::tipoReserva() { return "Individual"; }
+

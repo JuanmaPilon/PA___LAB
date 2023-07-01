@@ -1,4 +1,6 @@
 #include "Fabrica.h"
+#include "cargarDatosDePrueba.h"
+#include "ISistema.h"
 #include <iostream>
 #include <istream>
 #include <ios>
@@ -120,7 +122,7 @@ int main()
 				cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
 				cin >> a;
 				if (a == 0)
-					return;
+					break;
 				else
 				{
 					cout << "Ingrese nombre del hostal a crear: ";
@@ -157,7 +159,7 @@ int main()
 				cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
 				cin >> a;
 				if (a == 0)
-					return;
+					break;
 				else
 				{
 					cout << "Ingrese nombre del hostal: ";
@@ -264,7 +266,7 @@ int main()
 			map<string, Huesped *> coleccionHuespedReserva;
 
 			string nombreH, email;
-			int anio, mes, dia, hora, minuto, tipoDeReserva, numero, cantidadH, confirmar,codigo;
+			int anio, mes, dia, hora, minuto, tipoDeReserva, numero, cantidadH, confirmar;
 
 			isistema->obtenerHostales();
 			cout << "Ingrese el nombre del hostal seleccionado: ";
@@ -278,7 +280,7 @@ int main()
 				cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
 				cin >> a;
 				if (a == 0)
-					return;
+					break;
 				else
 				{
 					cout << "Ingrese nombre del hostal: ";
@@ -353,14 +355,12 @@ int main()
 					coleccionHuespedReserva.insert({email, hues});
 				};
 			}
-			cout << "ingrese el codigo";
-			cin >> codigo;
 			cout << "Desea confirmar la reserva? (Si = 1, No = 0): ";
 			cin >> confirmar;
 
 			if (confirmar == 1)
 			{
-				isistema->confirmarReserva(codigo ,h, fechaCheckIn, fechaCheckOut, tipoDeReserva, hab, hue, coleccionHuespedReserva);
+				isistema->confirmarReserva(h, fechaCheckIn, fechaCheckOut, tipoDeReserva, hab, hue, coleccionHuespedReserva);
 			}
 		}
 		break;
@@ -372,7 +372,7 @@ int main()
 
 			string nombreHostal, emailHuesped;
 			int codReserva;
-
+			
 			isistema->obtenerHostales();
 
 			cout << "Ingrese el nombre del hostal al cual desea registrarle una estadia" << endl;
@@ -393,13 +393,8 @@ int main()
 			cout << "Ingrese el id de la reserva sobre la cual registrara la estadia" << endl;
 			cin >> codReserva;
 
-			cout << "Ingrese el codigo de la estadia" << endl;
-			cin >> codReserva;
-
-			int codigo;
-
 			Reloj *r = Reloj::getInstancia();
-			Estadia *est = new Estadia(codigo, r->getReloj(), NULL, isistema->seleccionarReserva(codReserva), hue);
+			Estadia *est = new Estadia(r->getReloj(), NULL, isistema->seleccionarReserva(codReserva), hue);
 			string key = to_string(codReserva) + emailHuesped;
 			isistema->agregarEstadia(key, est);
 			h->agregarEstadia(to_string(codReserva) + emailHuesped, est);
@@ -465,7 +460,7 @@ int main()
 			getline(cin, rol);
 			if ((rol != "E") && (rol != "H"))
 			{
-				return;
+				break;
 			}
 			getline(cin, email);
 			isistema->obtenerInfoUsuario(rol, email);
@@ -508,7 +503,7 @@ int main()
 				cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
 				cin >> a;
 				if (a == 0)
-					return;
+					break;
 				else
 				{
 					cout << "Ingrese nombre del hostal: ";
@@ -535,7 +530,7 @@ int main()
 			if (isistema->existeHostal(nomHostal))
 				isistema->imprimirEstadias(nomHostal);
 			else
-				return;
+				break;
 			cout << "Seleccione una de las estadias, ingresando el mail asociado a ella (Enter) y luego su codigo:" << endl;
 			getline(cin, emailestadia);
 			int cod;
@@ -566,7 +561,7 @@ int main()
 					cin >> a;
 					existe = !(a == 1);
 					if (existe)
-						return;
+						break;
 				}
 			};
 			int mes;
@@ -586,7 +581,7 @@ int main()
 					cin >> a;
 					existe = !(a == 1);
 					if (existe)
-						return;
+						break;
 				}
 			};
 
@@ -607,7 +602,7 @@ int main()
 					cin >> a;
 					existe = !(a == 1);
 					if (existe)
-						return;
+						break;
 				}
 			};
 
@@ -628,7 +623,7 @@ int main()
 					cin >> a;
 					existe = !(a == 1);
 					if (existe)
-						return;
+						break;
 				}
 			};
 
@@ -649,7 +644,7 @@ int main()
 					cin >> a;
 					existe = !(a == 1);
 					if (existe)
-						return;
+						break;
 				}
 			};
 
@@ -660,7 +655,7 @@ int main()
 
 		case 13: // Cargar datos de prueba
 		{
-			
+			cargarDatosDePrueba();
 		}
 		break;
 

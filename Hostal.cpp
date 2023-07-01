@@ -1,6 +1,6 @@
 #include "Hostal.h"
-
-Hostal::~Hostal(){
+#include "Estadia.h"
+Hostal::Hostal(){
 }
 Hostal::Hostal(string nombre, string direccion, string telefono){
   this->nombre = nombre;

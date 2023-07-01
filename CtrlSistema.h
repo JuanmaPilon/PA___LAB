@@ -1,3 +1,5 @@
+#ifndef CTRLSISTEMA_H
+#define CTRLSISTEMA_H
 #include "ISistema.h"
 #include "EstadoReserva.h"
 #include "TipoCargo.h"
@@ -54,12 +56,14 @@ public:
 
     void agregarEstadia(string key, Estadia *est); //
 
-    ///////////////////////////////////////////////////////////////////////////////////////////// todo lo de reserva ////////////////////////////////////////////////////////////////////////////
-    void obtenerReservas(Hostal *hos); // 
+    
+	///////////////////////////////////////////////////////////////////////////////////////////// todo lo de reserva ////////////////////////////////////////////////////////////////////////////
+	void setContadorReserva();
+	void obtenerReservas(Hostal *hos); // 
     Reserva *seleccionarReserva(int codigo); //
     Reserva *getReserva(); //
     void cancelarReserva(); //
-    void confirmarReserva(int Codigo,Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva);
+    void confirmarReserva(Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva);
     void ingresarInformacionReserva(DTFecha checkIN, DTFecha checkOUT, DTReserva *tipoReserva); //
     void obtenerReserva(); //
     void obtenerReservasPorHostal(string nomHostal); //
@@ -143,5 +147,8 @@ private:
 
         Huesped* huespedSeleccionado;
         Empleado* empleadoSeleccionado;
+		//////////////////////////////////////////contadorReserva///////////////////
+		int contadorReserva;
 
 };
+#endif

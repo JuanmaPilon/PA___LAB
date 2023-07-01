@@ -12,6 +12,7 @@
 #include "DTEmpleado.h"
 
 CtrlSistema::CtrlSistema(){
+	this->contadorReserva = 0;
 }
 
 CtrlSistema *CtrlSistema::instancia = NULL;
@@ -22,6 +23,11 @@ CtrlSistema *CtrlSistema::getInstancia()
 		instancia = new CtrlSistema();
 	return instancia;
 };
+
+void CtrlSistema::setContadorReserva()
+{
+	this->contadorReserva = 0;
+}
 
 void CtrlSistema::confirmarAltaHostal(string nombre, string direccion, string telefono)
 {
@@ -325,17 +331,18 @@ Reserva *CtrlSistema::getReserva()
 
 void CtrlSistema::cancelarReserva() {}
 
-void CtrlSistema::confirmarReserva(int Codigo, Hostal *h, DTFecha *checkIn, DTFecha *checkOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, map<string, Huesped *> coleccionHuespedReserva)
+void CtrlSistema::confirmarReserva(Hostal *h, DTFecha *checkIn, DTFecha *checkOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, map<string, Huesped *> coleccionHuespedReserva)
 {
+	this->contadorReserva++;
 	if (tipoDeReserva == 0)
 	{ // reserva individual
-		ReservaIndividual *res = new ReservaIndividual(Codigo ,checkIn, checkOut, EstadoReserva::ABIERTA, hue, hab);
-		coleccionReservas.insert({Codigo, res});
+		ReservaIndividual *res = new ReservaIndividual(contadorReserva ,checkIn, checkOut, EstadoReserva::ABIERTA, hue, hab);
+		coleccionReservas.insert({contadorReserva, res});
 	}
 	else
 	{ // reserva grupal
-		ReservaGrupal *res = new ReservaGrupal(Codigo, checkIn, checkOut, EstadoReserva::ABIERTA, coleccionHuespedReserva, hab);
-		coleccionReservas.insert({Codigo, res});
+		ReservaGrupal *res = new ReservaGrupal(contadorReserva, checkIn, checkOut, EstadoReserva::ABIERTA, coleccionHuespedReserva, hab);
+		coleccionReservas.insert({contadorReserva, res});
 	}
 }
 
@@ -703,7 +710,7 @@ void CtrlSistema::confirmarAltaUsuario(){
         this->coleccionUsuarios.insert({this->email, nuevoEmpleado});
     }
 
-    cout << "Se ha dado de alta el usuario exitosamente\n";
+    cout << "Alta de un usuario exitosa\n";
 
     this->nombre = "";
     this->email = "";
@@ -766,10 +773,9 @@ void CtrlSistema::imprimirUsuarios(){ //imprime solo los nombres de los usuarios
 void CtrlSistema::obtenerInfoUsuario(string rol, string email){
     if(rol=="H"){
         Huesped* h =findHuesped(email);
-        DTHuesped * aux = new DTHuesped(h->getNombre(),h->getEmail(),h->getEsFinger());
-        cout << "-Nombre del empleado: " << aux->getNombre() << endl;
-        cout << "-Email: " << aux->getEmail() << endl;
-        if (aux->getEsFinger())
+        cout << "-Nombre del Huesped: " << h->getNombre() << endl;
+        cout << "-Email: " << h->getEmail() << endl;
+        if (h->getEsFinger())
             cout << "-Es Finger: Si" << endl;
         else
             cout << "-Es Finger: No" << endl;

@@ -1,10 +1,10 @@
 #ifndef RESERVAIND_H
 #define RESERVAIND_H
-#include "Reserva.h"
+
 #include <string>
-#include <DTFecha.h>
-#include "Huesped.h"
-#include "Usuario.h"
+using namespace std;
+#include "DTFecha.h"
+#include "Reserva.h"
 
 
 class ReservaIndividual : public Reserva {

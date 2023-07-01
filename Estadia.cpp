@@ -2,8 +2,7 @@
 Estadia::Estadia(){
 
 }
-Estadia::Estadia(int codigo, DTFecha* checkIn, DTFecha* checkOut, Reserva* reservaEstadia, Huesped* huespedEstadia){
-    this->codigo=codigo;
+Estadia::Estadia(DTFecha* checkIn, DTFecha* checkOut, Reserva* reservaEstadia, Huesped* huespedEstadia){
     this->checkIn =checkIn;
     this->checkOut=checkOut;
     this->reservaEstadia = reservaEstadia;

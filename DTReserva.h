@@ -1,5 +1,5 @@
-#ifndef DTRESERVA
-#define DTRESERVA
+#ifndef DTRESERVA_H
+#define DTRESERVA_H
 #include <string>
 using namespace std;
 #include "DTHuesped.h"
@@ -7,7 +7,8 @@ using namespace std;
 #include "EstadoReserva.h"
 #include "DTFecha.h"
 #include "Habitacion.h"
-
+class Habitacion;
+class Huesped;
 class DTReserva {
 	private:
 		int codigo;

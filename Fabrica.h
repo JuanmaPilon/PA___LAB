@@ -1,17 +1,18 @@
 #ifndef FABRICA_H
 #define FABRICA_H
+#include <stdexcept>
 #include "ISistema.h"
 #include "CtrlSistema.h"
 
-class Fabrica: public ISistema {
+class Fabrica{
     public:
         static Fabrica* getInstance();
-        ~Fabrica();
+        
         ISistema* getISistema();
     private:
         static Fabrica* instancia;
         Fabrica();
-        ~Fabrica();
+		~Fabrica();
 };
 #endif
 

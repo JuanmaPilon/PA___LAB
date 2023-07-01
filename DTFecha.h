@@ -1,7 +1,14 @@
 #ifndef DTFECHA_H
 #define DTFECHA_H
 #include <iostream>
+#include <stdlib.h>
+#include <iostream>
+#include <istream>
+#include <ios>
 #include <time.h>
+
+using namespace std;
+
 class DTFecha {
 public:
 DTFecha(int dia, int mes, int anio, int hora, int minuto);

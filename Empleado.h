@@ -14,7 +14,6 @@ public:
     ~Empleado();
     string getCargo();
     Hostal* getHostalTrabaja();
-    string getNombre();
     void setHostalTrabaja(Hostal *hos);
     void setCargo(tipoCargo cargo);      
 private:

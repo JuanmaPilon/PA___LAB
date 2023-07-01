@@ -1,5 +1,5 @@
-#ifndef DTHUESPED
-#define DTHUESPED
+#ifndef DTHUESPED_H
+#define DTHUESPED_H
 
 #include <string>
 using namespace std;

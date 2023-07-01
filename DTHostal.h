@@ -1,5 +1,5 @@
-#ifndef DTHOSTAL
-#define DTHOSTAL
+#ifndef DTHOSTAL_H
+#define DTHOSTAL_H
 
 #include <string>
 using namespace std;

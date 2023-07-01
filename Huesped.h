@@ -1,12 +1,9 @@
 #ifndef HUESPED_H
 #define HUESPED_H
-#include "Usuario.h"
-#include "Estadia.h"
 #include <string>
+#include "Usuario.h"
 #include "Reserva.h"
-#include "ReservaGrp.h"
 using namespace std;
-
 class Huesped : public Usuario {
 public:
     Huesped();
@@ -15,10 +12,8 @@ public:
     void getHuesped();
     bool getEsFinger();
     void setEsFinger(bool esFinger);
-    ~Huesped();
 private:
 bool esFinger;
-Reserva* reserva;
 };
 
 #endif

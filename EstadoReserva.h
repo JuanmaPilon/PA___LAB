@@ -1,5 +1,5 @@
 #ifndef ESTADORESERVA_H
-#define TESTADORESERVA_H
+#define ESTADORESERVA_H
 
 enum EstadoReserva {
     ABIERTA,

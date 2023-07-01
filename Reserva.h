@@ -1,20 +1,24 @@
 #ifndef RESERVA_H
 #define RESERVA_H
-#include "EstadoReserva.h"
-#include "DTFecha.h"
-#include "Estadia.h"
-#include <map>
 #include <string>
+using namespace std;
+
 #include "Huesped.h"
 #include "Habitacion.h"
-
+#include "DTReserva.h"
+#include "DTHabitacion.h"
+#include "EstadoReserva.h"
+#include "DTFecha.h"
+#include <map>
+class Huesped;
+class Habitacion;
 class Reserva {
 public:
     Reserva();
     Reserva(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Habitacion* habitacion);
     virtual float calcularCosto() = 0; //sin metodo
     virtual string tipoReserva() = 0; //sin metodo
-    virtual ~Reserva();
+    virtual ~Reserva(){};
     int getCodigo();
     EstadoReserva getEstado();
     Habitacion* getHabitacion();

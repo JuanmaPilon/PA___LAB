@@ -1,4 +1,5 @@
 #include "Fabrica.h"
+#include "CtrlSistema.h"
 
 Fabrica* Fabrica::instancia = nullptr;
 
@@ -15,6 +16,4 @@ Fabrica::~Fabrica() {
 };
 ISistema* Fabrica::getISistema() {
 	return CtrlSistema::getInstancia();
-};
-Fabrica::~Fabrica() { 
 };

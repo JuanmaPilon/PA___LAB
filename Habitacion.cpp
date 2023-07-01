@@ -1,4 +1,7 @@
 #include "Habitacion.h"
+#include <string>
+#include <iostream>
+using namespace std;
 
 Habitacion::Habitacion(){
   this->numero = 0;

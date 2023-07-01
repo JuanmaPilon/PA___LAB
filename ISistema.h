@@ -9,11 +9,13 @@ using namespace std;
 #include "Habitacion.h"
 #include "Estadia.h"
 #include <map>
+#include <set>
 #include "Reserva.h"
 #include "Usuario.h"
 #include "Empleado.h"
 #include "DTEmpleado.h"
 #include "DTReserva.h"
+class Reserva;
 class ISistema
 {
 private:
@@ -46,11 +48,12 @@ public:
     virtual void agregarEstadia(string key, Estadia *est) = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////////////todo lo de reserva//////////////////////////////////////////////////////////////////////////////
-    virtual void obtenerReservas(Hostal *hos) = 0;
+	virtual void setContadorReserva() = 0;
+	virtual void obtenerReservas(Hostal *hos) = 0;
     virtual Reserva *seleccionarReserva(int codigo) = 0;
     virtual Reserva *getReserva() = 0;
     virtual void cancelarReserva() = 0;
-    virtual void confirmarReserva(int Codigo,Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva) = 0;
+    virtual void confirmarReserva(Hostal *h, DTFecha *fechaCheckIn, DTFecha *fechaCheckOut, int tipoDeReserva, Habitacion *hab, Huesped *hue, std::map<std::string, Huesped *> coleccionHuespedReserva) = 0;
     virtual void ingresarInformacionReserva(DTFecha checkIN, DTFecha checkOUT, DTReserva *tipoReserva) = 0;
     virtual void obtenerReserva() = 0;
     virtual void obtenerReservasPorHostal(string nomHostal) = 0;

@@ -4,7 +4,8 @@
 #include <map>
 #include <string>
 #include "Hostal.h"
-
+using namespace std;
+class Hostal;
 class Habitacion {
 public:
     Habitacion();

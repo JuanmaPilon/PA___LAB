@@ -1,5 +1,5 @@
-#ifndef DTHABITACION
-#define DTHABITACION
+#ifndef DTHABITACION_H
+#define DTHABITACION_H
 
 #include <string>
 

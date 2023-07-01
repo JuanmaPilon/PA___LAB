@@ -1,4 +1,6 @@
 #include "Empleado.h"
+#include "Usuario.h"
+#include "Hostal.h"
 
 Empleado::Empleado(){
 
@@ -21,9 +23,7 @@ string Empleado::getCargo(){
 Hostal* Empleado::getHostalTrabaja(){
     return this->hostalTrabaja;
 }
-string Empleado::getNombre(){
-    this->Usuario::getNombre();
-}
+
 void Empleado::setHostalTrabaja(Hostal* hos){
     this->hostalTrabaja=hos;
 }

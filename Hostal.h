@@ -1,10 +1,16 @@
 #ifndef HOSTAL_H
 #define HOSTAL_H
-#include "Reserva.h"
-#include <map>
 #include <string>
-#include "Empleado.h"
+#include <iostream>
+#include <map>
+
+#include "Habitacion.h"
+
 using namespace std;
+
+class Habitacion;
+class Estadia;
+
 
 class Hostal {
 public:

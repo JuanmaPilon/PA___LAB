@@ -1,4 +1,8 @@
 #include "Huesped.h"
+#include "Usuario.h"
+#include <string>
+#include <iostream>
+using namespace std;
 
 Huesped::Huesped(){
 }
@@ -11,5 +15,6 @@ bool Huesped::getEsFinger(){
 void Huesped::setEsFinger(bool esFinger){
     this->esFinger = esFinger;
 }
+
 Huesped::~Huesped(){ 
 }

@@ -1,13 +1,17 @@
 #ifndef ESTADIA_H
 #define ESTADIA_H
-#include "DTFecha.h"
-#include "Reserva.h"
 #include <string>
+using namespace std;
+
+#include "Reserva.h"
+#include "Reloj.h"
+#include "DTFecha.h"
+class Habitacion;
 
 class Estadia {
 public:
     Estadia();
-    Estadia(int codigo, DTFecha* checkIn, DTFecha* checkOut, Reserva* reservaEstadia, Huesped* huespedEstadia);
+    Estadia(DTFecha* checkIn, DTFecha* checkOut, Reserva* reservaEstadia, Huesped* huespedEstadia);
     virtual ~Estadia();
     string getPromo();
     Reserva* getReserva();
@@ -20,7 +24,6 @@ public:
 
     bool estaFinalizada();
 private:
-    int codigo;
     string promo;
     DTFecha* checkIn;
     DTFecha* checkOut;
