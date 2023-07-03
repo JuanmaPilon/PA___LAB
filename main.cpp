@@ -6,6 +6,7 @@
 #include <ios>
 #include <map>
 #include <set>
+#include <limits>
 
 using namespace std;
 
@@ -15,7 +16,6 @@ int main()
 	bool flag = false;
 	while (!flag)
 	{
-		// bool retroceder = false;
 		int numingresado;
 		cout << "\nBienvenido. Elija la opcion.\n\n";
 		cout << "1. Alta de Usuario\n";
@@ -41,6 +41,7 @@ int main()
 			{
 				cout << "ERROR\n";
 				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Descartar la entrada incorrecta
 				cout << "Ingrese un numero valido\n";
 			}
 			else
@@ -152,38 +153,45 @@ int main()
 			cin.ignore();
 			getline(cin, nomHostal);
 
-			while (!(isistema->existeHostal(nomHostal)))
+			try
 			{
-				int a = 0;
-				cout << "Error, no existe un hostal con ese nombre, desea volver a intentar?" << endl;
-				cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
-				cin >> a;
-				if (a == 0)
-					break;
-				else
+				while (!(isistema->existeHostalThrow(nomHostal)))
 				{
-					cout << "Ingrese nombre del hostal: ";
-					cin.ignore();
-					getline(cin, nomHostal);
+					int a = 0;
+					cout << "Error, no existe un hostal con ese nombre, desea volver a intentar?" << endl;
+					cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
+					cin >> a;
+					if (a == 0)
+						break;
+					else
+					{
+						cout << "Ingrese nombre del hostal: ";
+						cin.ignore();
+						getline(cin, nomHostal);
+					}
 				}
+
+				isistema->seleccionarHostal(nomHostal);
+
+				int num, capacidad;
+				float precio;
+
+				cout << "Ingrese el numero de la habitacion: ";
+				cin >> num;
+
+				cout << "Ingrese la capacidad de la habitacion: ";
+				cin >> capacidad;
+
+				cout << "Ingrese el precio de la habitacion: ";
+				cin >> precio;
+
+				isistema->ingresarInformacionHabitacion(num, precio, capacidad);
+				isistema->confirmarAltaHabitacion();
 			}
-
-			isistema->seleccionarHostal(nomHostal);
-
-			int num, capacidad;
-			float precio;
-
-			cout << "Ingrese el numero de la habitacion: ";
-			cin >> num;
-
-			cout << "Ingrese la capacidad de la habitacion: ";
-			cin >> capacidad;
-
-			cout << "Ingrese el precio de la habitacion: ";
-			cin >> precio;
-
-			isistema->ingresarInformacionHabitacion(num, precio, capacidad);
-			isistema->confirmarAltaHabitacion();
+			catch (const std::exception &e)
+			{
+				cout << "Error: " << e.what() << endl;
+			}
 		}
 		break;
 
@@ -191,7 +199,7 @@ int main()
 		{
 			Fabrica *fab = Fabrica::getInstance(); // llamo a la instancia de la fabrica
 			ISistema *isistema = fab->getISistema();
-			
+
 			string nombreHostal, emailEmpleado, confirmar;
 			bool seguir = true;
 
@@ -223,7 +231,7 @@ int main()
 						cout << "-----------" << endl;
 					}
 
-					cout << "Ingrese el email del empleado al que quiere asignar: "; // controlar q este en la lista?
+					cout << "Ingrese el email del empleado al que quiere asignar: ";
 					getline(cin, emailEmpleado);
 					Empleado *emp = isistema->findEmpleado(emailEmpleado);
 
@@ -260,7 +268,7 @@ int main()
 
 		case 5: // Realizar reserva
 		{
-			Fabrica *fab = Fabrica::getInstance();	  // Llamo a la instancia de la fabrica
+			Fabrica *fab = Fabrica::getInstance();	 // Llamo a la instancia de la fabrica
 			ISistema *isistema = fab->getISistema(); // Llamo a la interfaz de sistema
 
 			map<string, Huesped *> coleccionHuespedReserva;
@@ -272,107 +280,113 @@ int main()
 			cout << "Ingrese el nombre del hostal seleccionado: ";
 			cin.ignore();
 			getline(cin, nombreH);
-
-			while (!(isistema->existeHostal(nombreH)))
+			try
 			{
-				int a = 0;
-				cout << "Error, no existe un hostal con ese nombre, desea volver a intentar?" << endl;
-				cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
-				cin >> a;
-				if (a == 0)
-					break;
-				else
+				while (!(isistema->existeHostalThrow(nombreH)))
 				{
-					cout << "Ingrese nombre del hostal: ";
+					int a = 0;
+					cout << "Error, no existe un hostal con ese nombre, desea volver a intentar?" << endl;
+					cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
+					cin >> a;
+					if (a == 0)
+						break;
+					else
+					{
+						cout << "Ingrese nombre del hostal: ";
+						cin.ignore();
+						getline(cin, nombreH);
+					}
+				}
+
+				isistema->seleccionarHostal(nombreH);
+				Hostal *h = isistema->getHostal();
+
+				cout << "Ingrese la fecha de check In:" << endl;
+				cout << "Ingrese anio: ";
+				cin >> anio;
+				cout << "Ingrese mes: ";
+				cin >> mes;
+				cout << "Ingrese dia: ";
+				cin >> dia;
+				cout << "Ingrese hora: ";
+				cin >> hora;
+				cout << "Ingrese minuto: ";
+				cin >> minuto;
+				DTFecha *fechaCheckIn = new DTFecha(dia, mes, anio, hora, minuto);
+
+				cout << "Ingrese la fecha de check Out:" << endl;
+				cout << "Ingrese anio: ";
+				cin >> anio;
+				cout << "Ingrese mes: ";
+				cin >> mes;
+				cout << "Ingrese dia: ";
+				cin >> dia;
+				cout << "Ingrese hora: ";
+				cin >> hora;
+				cout << "Ingrese minuto: ";
+				cin >> minuto;
+				DTFecha *fechaCheckOut = new DTFecha(dia, mes, anio, hora, minuto);
+
+				cout << "ingrese si la reserva sera grupal o individual (Individual = 0, Grupal = 1): ";
+				cin >> tipoDeReserva;
+
+				isistema->habitacionDisponible(fechaCheckIn, fechaCheckOut, h);
+
+				cout << "Ingrese el numero de la habitacion seleccionada: ";
+				cout << "---------------------------" << endl;
+
+				cin >> numero;
+				Habitacion *hab = isistema->getHabitacion(h, numero);
+
+				isistema->obtenerHuespedes();
+				cout << "Ingrese el email del huesped que realizara la reserva: ";
+				cin.ignore();
+				getline(cin, email);
+
+				isistema->seleccionarHuesped(email);
+				Huesped *hue = isistema->getHuesped();
+				coleccionHuespedReserva.insert({email, hue});
+
+				if (tipoDeReserva == 1)
+				{ // Si la reserva es grupal
+					cout << "Ingrese la cantidad de huespedes que se hospedaran con usted: ";
+					cin >> cantidadH;
 					cin.ignore();
-					getline(cin, nombreH);
+
+					for (int i = 0; i < cantidadH; i++)
+					{
+						cout << "Ingrese el nombre del nuevo huesped: ";
+						getline(cin, email);
+
+						isistema->seleccionarHuesped(email);
+						Huesped *hues = isistema->getHuesped();
+
+						coleccionHuespedReserva.insert({email, hues});
+					};
+				}
+				cout << "Desea confirmar la reserva? (Si = 1, No = 0): ";
+				cin >> confirmar;
+
+				if (confirmar == 1)
+				{
+					isistema->confirmarReserva(h, fechaCheckIn, fechaCheckOut, tipoDeReserva, hab, hue, coleccionHuespedReserva);
 				}
 			}
-
-			isistema->seleccionarHostal(nombreH);
-			Hostal *h = isistema->getHostal();
-
-			cout << "Ingrese la fecha de check In: anio, mes, dia, y la hora en formato hh:mm" << endl;
-			cout << "Ingrese anio: ";
-			cin >> anio;
-			cout << "Ingrese mes: ";
-			cin >> mes;
-			cout << "Ingrese dia: ";
-			cin >> dia;
-			cout << "Ingrese hora: ";
-			cin >> hora;
-			cout << "Ingrese minuto: ";
-			cin >> minuto;
-			DTFecha *fechaCheckIn = new DTFecha(dia, mes, anio, hora, minuto);
-
-			cout << "Ingrese la fecha de check Out: anio, mes, dia, y la hora en formato hh:mm" << endl;
-			cout << "Ingrese anio: ";
-			cin >> anio;
-			cout << "Ingrese mes: ";
-			cin >> mes;
-			cout << "Ingrese dia: ";
-			cin >> dia;
-			cout << "Ingrese hora: ";
-			cin >> hora;
-			cout << "Ingrese minuto: ";
-			cin >> minuto;
-			DTFecha *fechaCheckOut = new DTFecha(dia, mes, anio, hora, minuto);
-
-			cout << "ingrese si la reserva sera grupal o individual (Individual = 0, Grupal = 1): ";
-			cin >> tipoDeReserva;
-
-			isistema->habitacionDisponible(fechaCheckIn, fechaCheckOut, h);
-
-			cout << "Ingrese el numero de la habitacion seleccionada: ";
-			cout << "---------------------------" << endl;
-
-			cin >> numero;
-			Habitacion *hab = isistema->getHabitacion(h, numero);
-
-			isistema->obtenerHuespedes();
-			cout << "Ingrese el email del huesped que realizara la reserva: ";
-			cin.ignore();
-			getline(cin, email);
-
-			isistema->seleccionarHuesped(email);
-			Huesped *hue = isistema->getHuesped();
-			coleccionHuespedReserva.insert({email, hue}); // agrego el primer huesped
-
-			if (tipoDeReserva == 1)
-			{ // Si la reserva es grupal
-				cout << "Ingrese la cantidad de huespedes que se hospedaran con usted: ";
-				cin >> cantidadH;
-				cin.ignore();
-
-				for (int i = 0; i < cantidadH; i++)
-				{
-					cout << "Ingrese el nombre del nuevo huesped: ";
-					getline(cin, email);
-
-					isistema->seleccionarHuesped(email);
-					Huesped *hues = isistema->getHuesped();
-
-					coleccionHuespedReserva.insert({email, hues});
-				};
-			}
-			cout << "Desea confirmar la reserva? (Si = 1, No = 0): ";
-			cin >> confirmar;
-
-			if (confirmar == 1)
+			catch (const std::exception &e)
 			{
-				isistema->confirmarReserva(h, fechaCheckIn, fechaCheckOut, tipoDeReserva, hab, hue, coleccionHuespedReserva);
+				cout << "Error: " << e.what() << endl;
 			}
 		}
 		break;
 
 		case 6: // Registrar Estadia
 		{
-			Fabrica *fab = Fabrica::getInstance();	  // llamo a la instancia de la fabrica
+			Fabrica *fab = Fabrica::getInstance();	 // llamo a la instancia de la fabrica
 			ISistema *isistema = fab->getISistema(); // Llamo a la interfaz de sistema
 
 			string nombreHostal, emailHuesped;
 			int codReserva;
-			
+
 			isistema->obtenerHostales();
 
 			cout << "Ingrese el nombre del hostal al cual desea registrarle una estadia" << endl;
@@ -403,8 +417,8 @@ int main()
 
 		case 7: // Finalizar Estadia
 		{
-			Fabrica *fab = Fabrica::getInstance();	 // llamo a la instancia de la fabrica
-			ISistema *isistema = fab->getISistema(); // llamo a la interfaz de hostal
+			Fabrica *fab = Fabrica::getInstance();
+			ISistema *isistema = fab->getISistema();
 
 			string hostal, email;
 			cout << "A continuacion, se listan los hostales registrados" << endl;
@@ -450,27 +464,36 @@ int main()
 
 		case 8: // Consulta de Usuario
 		{
-			Fabrica *fab = Fabrica::getInstance();	 // llamo a la instancia de la fabrica
-			ISistema *isistema = fab->getISistema(); // llamo a la interfaz de sistema
+			Fabrica *fab = Fabrica::getInstance();
+			ISistema *isistema = fab->getISistema();
 			string rol, email;
 			isistema->imprimirUsuarios();
 
-			cout << "Ingrese si el usuario es huesped(H) o empleado(E) y luego (enter) el email del usuario sobre el cual desea consultar" << endl;
+			cout << "Ingrese si el usuario es huesped(H), empleado(E) o cualquier otra letra para salir" << endl;
 			cin.ignore();
 			getline(cin, rol);
 			if ((rol != "E") && (rol != "H"))
 			{
 				break;
 			}
+			cout << "Ingrese el email del usuario sobre el cual desea consultar" << endl;
 			getline(cin, email);
-			isistema->obtenerInfoUsuario(rol, email);
+
+			try
+			{
+				isistema->obtenerInfoUsuario(rol, email);
+			}
+			catch (const std::exception &e)
+			{
+				cout << "Error: " << e.what() << endl;
+			}
 		}
 		break;
 
 		case 9: // Consulta de Hostal
 		{
-			Fabrica *fab = Fabrica::getInstance();	  // llamo a la instancia de la fabrica
-			ISistema *isistema = fab->getISistema(); // llamo a la interfaz de sistema
+			Fabrica *fab = Fabrica::getInstance();
+			ISistema *isistema = fab->getISistema();
 
 			string hostalSeleccionado;
 			isistema->obtenerHostales();
@@ -486,8 +509,8 @@ int main()
 
 		case 10: // Consulta de reserva
 		{
-			Fabrica *fab = Fabrica::getInstance();	  // llamo a la instancia de la fabrica
-			ISistema *isistema = fab->getISistema(); // llamo a la interfaz de sistema
+			Fabrica *fab = Fabrica::getInstance();
+			ISistema *isistema = fab->getISistema();
 
 			isistema->obtenerHostales();
 
@@ -495,21 +518,27 @@ int main()
 			cout << "Seleccione un hostal ingresando su nombre: ";
 			cin.ignore();
 			getline(cin, nomHostal);
-
-			while (!(isistema->existeHostal(nomHostal)))
+			try
 			{
-				int a = 0;
-				cout << "Error, no existe un hostal con ese nombre, desea volver a intentar?" << endl;
-				cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
-				cin >> a;
-				if (a == 0)
-					break;
-				else
+				while (!(isistema->existeHostalThrow(nomHostal)))
 				{
-					cout << "Ingrese nombre del hostal: ";
-					cin.ignore();
-					getline(cin, nomHostal);
+					int a = 0;
+					cout << "Error, no existe un hostal con ese nombre, desea volver a intentar?" << endl;
+					cout << "Ingrese 1 si desea volver a intentar,ingrese 0 en caso contrario: ";
+					cin >> a;
+					if (a == 0)
+						break;
+					else
+					{
+						cout << "Ingrese nombre del hostal: ";
+						cin.ignore();
+						getline(cin, nomHostal);
+					}
 				}
+			}
+			catch (const std::exception &e)
+			{
+				cout << "Error: " << e.what() << endl;
 			}
 
 			isistema->seleccionarHostal(nomHostal);
@@ -519,8 +548,8 @@ int main()
 
 		case 11: // Consulta de Estadia
 		{
-			Fabrica *fab = Fabrica::getInstance();	  // llamo a la instancia de la fabrica
-			ISistema *isistema = fab->getISistema(); // llamo a la interfaz de sistema
+			Fabrica *fab = Fabrica::getInstance();
+			ISistema *isistema = fab->getISistema();
 
 			string nomHostal, emailestadia;
 			isistema->obtenerHostales();
@@ -531,9 +560,10 @@ int main()
 				isistema->imprimirEstadias(nomHostal);
 			else
 				break;
-			cout << "Seleccione una de las estadias, ingresando el mail asociado a ella (Enter) y luego su codigo:" << endl;
+			cout << "Seleccione una de las estadias, ingresando el mail asociado a ella" << endl;
 			getline(cin, emailestadia);
 			int cod;
+			cout << "Ingrese el codigo de la reserva" << endl;
 			cin >> cod;
 			isistema->imprimirlnfoEstadia(nomHostal, emailestadia, cod);
 		}
@@ -668,7 +698,7 @@ int main()
 
 		default:
 			cout << "Ingrese un numero del 0 al 13\n";
-
+			break;
 			return 0;
 		}
 	}

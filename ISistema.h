@@ -21,16 +21,15 @@ class ISistema
 private:
 public:
     ISistema(){};
-    //////////////////////////////////////////////////////////todo lo de HOSTAL////////////////////////////////////////////////////////////////////
     virtual void confirmarAltaHostal(string nombre, string direccion, string telefono) = 0;
     virtual void imprimirHabitaciones(Hostal *h) = 0;
     virtual bool existeEstadia(string email) = 0;
     virtual bool existeHostal(string nombre) = 0;
+    virtual bool existeHostalThrow(string nombre) = 0;
     virtual void finalizarEstadia(string email) = 0;
     virtual bool estadiaValida(string email) = 0;
     virtual void obtenerHostales() = 0;
     virtual void seleccionarHostal(string nomHostal) = 0;
-
     virtual void imprimirEstadias(string nomHostal) = 0;
     virtual Habitacion *seleccionarHabitacion(int numero) = 0;
     virtual Hostal *getHostal() = 0;
@@ -44,12 +43,9 @@ public:
     virtual void ingresarInformacionHabitacion(int num, float precio, int capacidad) = 0;
     virtual void listarEstadiasFinalizadas(string email) = 0;
     virtual void imprimirInfoBasicaHostal(Hostal *hos) = 0;
-
     virtual void agregarEstadia(string key, Estadia *est) = 0;
-
-    /////////////////////////////////////////////////////////////////////////////////////////////todo lo de reserva//////////////////////////////////////////////////////////////////////////////
-	virtual void setContadorReserva() = 0;
-	virtual void obtenerReservas(Hostal *hos) = 0;
+    virtual void setContadorReserva() = 0;
+    virtual void obtenerReservas(Hostal *hos) = 0;
     virtual Reserva *seleccionarReserva(int codigo) = 0;
     virtual Reserva *getReserva() = 0;
     virtual void cancelarReserva() = 0;
@@ -59,51 +55,37 @@ public:
     virtual void obtenerReservasPorHostal(string nomHostal) = 0;
     virtual void habitacionDisponible(DTFecha *checkIn, DTFecha *checkOut, Hostal *h) = 0;
     virtual void imprimirReservasHuesped(Huesped *hues) = 0;
-    ///////////////////////////////////////////////////////////////////todo lo de  usuario/////////////////////////////////////////////////////////////////////////////////////////////////////
     virtual void seleccionarEmpleado(string email) = 0;
     virtual Usuario *seleccionarUsuario(string email) = 0;
     virtual Huesped *seleccionarHuesped(string nombre) = 0;
     virtual void imprimirUsuarios() = 0;
     virtual void cancelarAltaIngreso() = 0;
     virtual Huesped *getHuesped() = 0;
-
     virtual void asignarCargo(string nombre, tipoCargo cargo) = 0;
     virtual void setCargo(tipoCargo) = 0;
-
     virtual Empleado *findEmpleado(string email) = 0;
     virtual Huesped *findHuesped(string nombre) = 0;
     virtual bool existeUsuario() = 0;
     virtual void ingresarDatosUsuario() = 0;
     virtual void actualizarEmailUsuario(string email) = 0;
     virtual void confirmarAltaUsuario() = 0;
-
-    // opiti
     virtual void setHostalTrabaja(Hostal *hos) = 0;
     virtual set<DTEmpleado *> obtenerEmpleadosNoRegistrados(Hostal *hos) = 0;
     virtual void imprimirReservasHuesped(string emailHuesped) = 0;
-
-
-    // setters
     virtual void setNombre(string nombre) = 0;
     virtual void setEmail(string email) = 0;
     virtual void setContrasenia(string contrasenia) = 0;
     virtual void setEsFinger(bool finger) = 0;
-
-    // OPERACIONES DONDE OBTENGO COSAS
     virtual Empleado *getEmpleado() = 0;
     virtual void obtenerInfoUsuario(string rol, string email) = 0;
     virtual bool obtenerEsFinger() = 0;
     virtual void obtenerInfoEmpleado() = 0;
     virtual Empleado *obtenerEmpleado() = 0;
-
-    // OPERACIONES DONDE PRINTEO SETS DE COSITAS
     virtual void obtenerEmpleados(string nomHostal) = 0;
     virtual void obtenerEmpleados() = 0;
     virtual void obtenerReservasHuesped(string email) = 0;
     virtual void obtenerHuespedes() = 0;
     virtual void obtenerUsuarios() = 0;
-
-    // IMPRIMIRINFO
     virtual void imprimirTodaLaInfoDeUsuarios() = 0;
 };
 #endif

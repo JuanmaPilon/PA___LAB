@@ -6,31 +6,29 @@
 #include <iostream>
 using namespace std;
 
-ReservaIndividual::ReservaIndividual(){
+ReservaIndividual::ReservaIndividual()
+{
 }
-ReservaIndividual::ReservaIndividual(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva Estado, Huesped* huesped, Habitacion* habitacion): Reserva(Codigo, checkIn, checkOut, estado, habitacion){
-    this->huesped= huesped;
+ReservaIndividual::ReservaIndividual(int Codigo, DTFecha *checkIn, DTFecha *checkOut, EstadoReserva Estado, Huesped *huesped, Habitacion *habitacion) : Reserva(Codigo, checkIn, checkOut, estado, habitacion)
+{
+  this->huesped = huesped;
 }
 
 float ReservaIndividual::calcularCosto()
 {
-  // Falta hacer calcular costo
+
   return 0;
 }
 
-
-void ReservaIndividual::borrarReserva(){  // no va?
-  this->huesped=NULL;
+void ReservaIndividual::borrarReserva()
+{
+  this->huesped = NULL;
   Reserva::setHabitacion(NULL);
-  delete(this->getCheckIn());
-  delete(this->getCheckOut());
+  delete (this->getCheckIn());
+  delete (this->getCheckOut());
 }
 
 ReservaIndividual::~ReservaIndividual() {}
-
-// string ReservaIndividual::TipoReserva() { return "Individual"; }
-
-// reservaIndividual::~reservaIndividual() {} 
 
 Huesped *ReservaIndividual::getHuesped()
 {
@@ -42,4 +40,3 @@ void ReservaIndividual::setHuesped(Huesped *Huesped)
 }
 
 string ReservaIndividual::tipoReserva() { return "Individual"; }
-

@@ -7,28 +7,26 @@
 
 using namespace std;
 
-class DTEmpleado{
-    private:
-        string email;
-        string nombre;
-        string password;
+class DTEmpleado
+{
+private:
+    string email;
+    string nombre;
+    string password;
+    tipoCargo cargo;
+    Hostal *hostalTrabaja;
 
-        tipoCargo cargo;
-        Hostal *hostalTrabaja;
-    public:
-        DTEmpleado(string email, string nombre, string password, tipoCargo cargo, Hostal *nomHostal);
-
-        string getEmail();
-        string getNombre(); 
-        tipoCargo getCargo(); 
-        Hostal* getHostalTrabaja();
-
-        void setEmail(string email);
-        void setNombre(string nombre);
-        void setCargo(tipoCargo cargo);
-        void setHostalTrabaja(Hostal *hostalTrabaja);
-        ~DTEmpleado();
+public:
+    DTEmpleado(string email, string nombre, string password, tipoCargo cargo, Hostal *nomHostal);
+    string getEmail();
+    string getNombre();
+    tipoCargo getCargo();
+    Hostal *getHostalTrabaja();
+    void setEmail(string email);
+    void setNombre(string nombre);
+    void setCargo(tipoCargo cargo);
+    void setHostalTrabaja(Hostal *hostalTrabaja);
+    ~DTEmpleado();
 };
-
 
 #endif

@@ -9,30 +9,29 @@ using namespace std;
 #include "Habitacion.h"
 class Habitacion;
 class Huesped;
-class DTReserva {
-	private:
-		int codigo;
-		DTFecha* checkIn;
-		DTFecha* checkOut;
-		EstadoReserva estado;
-		//float costo;
-		Huesped* huespedReserva;
-		Habitacion* habitacionReserva;
-	public:
-		DTReserva();
-		DTReserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado/*, float costo, int habitacion*/);
-		DTReserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Huesped *huespedReserva, Habitacion *habitacionReserva);
+class DTReserva
+{
+private:
+	int codigo;
+	DTFecha *checkIn;
+	DTFecha *checkOut;
+	EstadoReserva estado;
+	Huesped *huespedReserva;
+	Habitacion *habitacionReserva;
 
-		int getCodigo(); //getters
-		DTFecha* getCheckIn();
-		DTFecha* getCheckOut();
-		EstadoReserva getEstado();
-		Huesped* getHuespedDTReserva();
-		Habitacion* getHabitacion();
-		~DTReserva();
+public:
+	DTReserva();
+	DTReserva(int codigo, DTFecha *checkIn, DTFecha *checkOut, EstadoReserva estado);
+	DTReserva(int codigo, DTFecha *checkIn, DTFecha *checkOut, EstadoReserva estado, Huesped *huespedReserva, Habitacion *habitacionReserva);
+	int getCodigo();
+	DTFecha *getCheckIn();
+	DTFecha *getCheckOut();
+	EstadoReserva getEstado();
+	Huesped *getHuespedDTReserva();
+	Habitacion *getHabitacion();
+	~DTReserva();
 };
 
-//Sobrecarga de operadora para los DTReserva
-ostream& operator<<(ostream& os, DTReserva& dt);
+ostream &operator<<(ostream &os, DTReserva &dt);
 
 #endif

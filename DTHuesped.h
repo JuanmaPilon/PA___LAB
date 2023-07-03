@@ -4,22 +4,19 @@
 #include <string>
 using namespace std;
 
-class DTHuesped{
+class DTHuesped
+{
 private:
   string nombre;
   string email;
   bool esFinger;
 
 public:
-  DTHuesped(string nombre, string email, bool esFinger); // constructor
-  // getters si, setters no tiene, hay que crear nuevos
+  DTHuesped(string nombre, string email, bool esFinger);
   string getNombre();
   string getEmail();
   bool getEsFinger();
   ~DTHuesped();
 };
 
-
-
-
-#endif 
+#endif

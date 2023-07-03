@@ -11,8 +11,8 @@ using namespace std;
 class Habitacion;
 class Estadia;
 
-
-class Hostal {
+class Hostal
+{
 public:
     Hostal();
     Hostal(string nombre, string direccion, string telefono);
@@ -21,15 +21,16 @@ public:
     string getNombre();
     string getDireccion();
     string getTelefono();
-    Habitacion* getHabitacion(int num);
-    Estadia* getEstadia(string cod);
+    Habitacion *getHabitacion(int num);
+    Estadia *getEstadia(string cod);
     void setNombre(string nombre);
     void setDireccion(string direccion);
     void setTelefono(string telefono);
-    void agregarHabitacion(int num, Habitacion* hab);
-    void agregarEstadia(string cod, Estadia* e);
+    void agregarHabitacion(int num, Habitacion *hab);
+    void agregarEstadia(string cod, Estadia *e);
     void eliminarEstadia(string cod);
     ~Hostal();
+
 private:
     string nombre;
     string direccion;
@@ -38,6 +39,4 @@ private:
     map<string, Estadia *> coleccionEstadia;
 };
 
-
-
-#endif 
+#endif

@@ -1,27 +1,33 @@
 #include "DTEmpleado.h"
 
-DTEmpleado::DTEmpleado(string email, string nombre, string password, tipoCargo cargo, Hostal *nomHostal){
-    this->email=email;
-    this->nombre=nombre;
-    this->password=password;
-    this->cargo=cargo;
-    this->hostalTrabaja=nomHostal;
+DTEmpleado::DTEmpleado(string email, string nombre, string password, tipoCargo cargo, Hostal *nomHostal)
+{
+    this->email = email;
+    this->nombre = nombre;
+    this->password = password;
+    this->cargo = cargo;
+    this->hostalTrabaja = nomHostal;
 }
 
-string DTEmpleado::getEmail(){
+string DTEmpleado::getEmail()
+{
     return this->email;
 }
-string DTEmpleado::getNombre(){
+string DTEmpleado::getNombre()
+{
     return this->nombre;
 }
-tipoCargo DTEmpleado::getCargo(){
+tipoCargo DTEmpleado::getCargo()
+{
     return this->cargo;
-} 
-Hostal* DTEmpleado::getHostalTrabaja(){
+}
+Hostal *DTEmpleado::getHostalTrabaja()
+{
     return this->hostalTrabaja;
 }
-void DTEmpleado::setHostalTrabaja(Hostal *hostalTrabaja){
-    this->hostalTrabaja=hostalTrabaja;
+void DTEmpleado::setHostalTrabaja(Hostal *hostalTrabaja)
+{
+    this->hostalTrabaja = hostalTrabaja;
 }
 
-DTEmpleado::~DTEmpleado(){}
+DTEmpleado::~DTEmpleado() {}

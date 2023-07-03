@@ -4,7 +4,8 @@
 #include "Usuario.h"
 #include "Reserva.h"
 using namespace std;
-class Huesped : public Usuario {
+class Huesped : public Usuario
+{
 public:
     Huesped();
     Huesped(string email, string nombre, string password, bool esFinger);
@@ -12,8 +13,9 @@ public:
     void getHuesped();
     bool getEsFinger();
     void setEsFinger(bool esFinger);
+
 private:
-bool esFinger;
+    bool esFinger;
 };
 
 #endif

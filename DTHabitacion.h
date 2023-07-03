@@ -22,7 +22,6 @@ public:
   void setCapacidad(int capacidad);
 };
 
-// Sobrecarga de operadora para los DTReserva
 ostream &operator<<(ostream &os, DTHabitacion &dt);
 
 #endif

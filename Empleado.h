@@ -6,19 +6,19 @@
 #include <string>
 #include "Hostal.h"
 
-
-class Empleado : public Usuario{
+class Empleado : public Usuario
+{
 public:
     Empleado();
-    Empleado(string email, string nombre, string password, tipoCargo cargo,Hostal* hostalTrabaja);
+    Empleado(string email, string nombre, string password, tipoCargo cargo, Hostal *hostalTrabaja);
     ~Empleado();
     string getCargo();
-    Hostal* getHostalTrabaja();
+    Hostal *getHostalTrabaja();
     void setHostalTrabaja(Hostal *hos);
-    void setCargo(tipoCargo cargo);      
+    void setCargo(tipoCargo cargo);
+
 private:
-    Hostal* hostalTrabaja;
+    Hostal *hostalTrabaja;
     tipoCargo cargo;
-  
 };
-#endif 
+#endif

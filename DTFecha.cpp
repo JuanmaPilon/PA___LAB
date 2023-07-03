@@ -81,7 +81,7 @@ ostream &operator<<(ostream &out, DTFecha &dtfh)
     return out;
 };
 
-// sobrecarga de operador - para calcular la diferencia entre instancias de DtFechaHora en minutos
+// sobrecarga de operador para calcular la diferencia entre fechas
 int operator-(DTFecha &f1, DTFecha &f2)
 {
     struct tm time1;

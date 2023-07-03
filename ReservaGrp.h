@@ -12,18 +12,18 @@
 #include "Empleado.h"
 #include "Huesped.h"
 
-
-class ReservaGrupal : public Reserva {
+class ReservaGrupal : public Reserva
+{
 private:
-    map<string, Huesped*> coleccionHuespedGrupal;
+	map<string, Huesped *> coleccionHuespedGrupal;
+
 public:
-    ReservaGrupal();
-    ReservaGrupal(int Codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, map<string,Huesped*>, Habitacion *habitacion);
+	ReservaGrupal();
+	ReservaGrupal(int Codigo, DTFecha *checkIn, DTFecha *checkOut, EstadoReserva estado, map<string, Huesped *>, Habitacion *habitacion);
 	float calcularCosto();
 	string tipoReserva();
-	map<string, Huesped*> getHuespedes();
+	map<string, Huesped *> getHuespedes();
 	~ReservaGrupal();
 };
-
 
 #endif

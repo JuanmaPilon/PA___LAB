@@ -1,7 +1,8 @@
 #ifndef ESTADORESERVA_H
 #define ESTADORESERVA_H
 
-enum EstadoReserva {
+enum EstadoReserva
+{
     ABIERTA,
     CERRADA,
     CANCELADA

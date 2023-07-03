@@ -1,44 +1,46 @@
 #include "DTReserva.h"
 
-DTReserva::DTReserva(){}
-DTReserva::DTReserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado/* float costo, int habitacion*/){
-    this->codigo=codigo;
-    this->checkIn=checkIn;
-    this->checkOut=checkOut;
-   // this->costo=costo;
-    this->estado=estado;
-  //  this->habitacion=habitacion;
+DTReserva::DTReserva() {}
+DTReserva::DTReserva(int codigo, DTFecha *checkIn, DTFecha *checkOut, EstadoReserva estado)
+{
+    this->codigo = codigo;
+    this->checkIn = checkIn;
+    this->checkOut = checkOut;
+    this->estado = estado;
 }
 
-int DTReserva::getCodigo(){
+int DTReserva::getCodigo()
+{
     return this->codigo;
 }
 
-DTFecha* DTReserva::getCheckIn(){
+DTFecha *DTReserva::getCheckIn()
+{
     return this->checkIn;
 }
 
-DTFecha* DTReserva::getCheckOut(){
+DTFecha *DTReserva::getCheckOut()
+{
     return this->checkOut;
 }
 
-EstadoReserva DTReserva::getEstado(){
+EstadoReserva DTReserva::getEstado()
+{
     return this->estado;
 }
-/*
-float DTReserva::getCosto(){
-    return this->costo;
-}*/
 
-Habitacion* DTReserva::getHabitacion(){
+Habitacion *DTReserva::getHabitacion()
+{
     return this->habitacionReserva;
 }
 
-Huesped* DTReserva::getHuespedDTReserva(){
+Huesped *DTReserva::getHuespedDTReserva()
+{
     return this->huespedReserva;
 }
 
-DTReserva::DTReserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoReserva estado, Huesped *huespedReserva, Habitacion *habitacionReserva){
+DTReserva::DTReserva(int codigo, DTFecha *checkIn, DTFecha *checkOut, EstadoReserva estado, Huesped *huespedReserva, Habitacion *habitacionReserva)
+{
     this->codigo = codigo;
     this->checkIn = checkIn;
     this->checkOut = checkOut;
@@ -46,4 +48,4 @@ DTReserva::DTReserva(int codigo, DTFecha* checkIn, DTFecha* checkOut, EstadoRese
     this->huespedReserva = huespedReserva;
     this->habitacionReserva = habitacionReserva;
 }
-DTReserva::~DTReserva(){}
+DTReserva::~DTReserva() {}

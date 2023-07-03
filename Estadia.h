@@ -8,28 +8,28 @@ using namespace std;
 #include "DTFecha.h"
 class Habitacion;
 
-class Estadia {
+class Estadia
+{
 public:
     Estadia();
-    Estadia(DTFecha* checkIn, DTFecha* checkOut, Reserva* reservaEstadia, Huesped* huespedEstadia);
+    Estadia(DTFecha *checkIn, DTFecha *checkOut, Reserva *reservaEstadia, Huesped *huespedEstadia);
     virtual ~Estadia();
     string getPromo();
-    Reserva* getReserva();
-    Huesped* getHuesped();
-    DTFecha* getCheckIn();
-    DTFecha* getCheckOut();
-    void setFechaCheckIn(DTFecha* checkIN);
-    void setFechaCheckOut(DTFecha* checkOUT);
+    Reserva *getReserva();
+    Huesped *getHuesped();
+    DTFecha *getCheckIn();
+    DTFecha *getCheckOut();
+    void setFechaCheckIn(DTFecha *checkIN);
+    void setFechaCheckOut(DTFecha *checkOUT);
     void setPromoCode(string codigo);
-
     bool estaFinalizada();
+
 private:
     string promo;
-    DTFecha* checkIn;
-    DTFecha* checkOut;
-    Reserva* reservaEstadia;
-    Huesped* huespedEstadia;
-
+    DTFecha *checkIn;
+    DTFecha *checkOut;
+    Reserva *reservaEstadia;
+    Huesped *huespedEstadia;
 };
 
 #endif
